@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+SITEMAP: http://www.easydread.com/sitemap.txt
