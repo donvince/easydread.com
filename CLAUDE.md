@@ -64,6 +64,5 @@ Then open http://localhost:8000
 
 - Bandcamp: easydread.bandcamp.com
 - YouTube: UCShZCj7av3AoLn-fC_4abDQ
-- Twitter: @easydreadmusic
 - Facebook: /easydread
 - Instagram: @easydreadmusic
