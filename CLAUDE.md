@@ -13,6 +13,7 @@ site/               # Static website files (downloaded from FTP)
   video/            # Video files (.mov) - large files
 scripts/
   ftp-download.sh   # Downloads site from FTP using 1Password credentials
+  ftp-upload.sh     # Uploads changed files to FTP (uses lftp)
 ```
 
 ## FTP Access
@@ -31,6 +32,26 @@ Credentials stored in 1Password (personal account):
 # Skip large video files
 SKIP_DIRS="video" ./scripts/ftp-download.sh site
 ```
+
+### Upload changes to FTP
+
+```bash
+# Upload changed files (skips video/ by default)
+./scripts/ftp-upload.sh site
+
+# Upload everything including videos
+SKIP_DIRS="" ./scripts/ftp-upload.sh site
+```
+
+Requires `lftp` (`brew install lftp`). Only uploads files newer than remote.
+
+### Local testing
+
+```bash
+cd site && python -m http.server 8000
+```
+
+Then open http://localhost:8000
 
 ## Site Details
 
