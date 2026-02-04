@@ -63,6 +63,6 @@ Then open http://localhost:8000
 ## External Services
 
 - Bandcamp: easydread.bandcamp.com
-- YouTube: UCShZCj7av3AoLn-fC_4abDQ
+- YouTube: @easydreadmusic
 - Facebook: /easydread
 - Instagram: @easydreadmusic
