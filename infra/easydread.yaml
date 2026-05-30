@@ -42,8 +42,7 @@ Resources:
   # Before: A → 178.79.166.99 (friend's server), www CNAME → easydread.com.
   # After:  A → GitHub Pages IPs (x4), www CNAME → donvince.github.io.
   #
-  # Unchanged: MX (ImprovMX), TXT/SPF, NS, SOA
-  # Removed:   ftp.easydread.com CNAME (FTP hosting retired)
+  # Unchanged: MX (ImprovMX), TXT/SPF, NS, SOA, ftp.easydread.com CNAME
   # ---------------------------------------------------------------------------
 
   EasydreadDnsRecords:
