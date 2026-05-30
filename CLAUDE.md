@@ -5,15 +5,17 @@ Website for easydread, a seven-piece Conscious-Rock-Reggae band from Bedfordshir
 ## Project Structure
 
 ```
-site/               # Static website files (downloaded from FTP)
+docs/               # Static website files (served by GitHub Pages)
   index.html        # Main page - gigs listing with Bandsintown widget
   videos.html       # Videos page - embedded YouTube videos
   images/           # Band photos, logos, social icons
   style/            # CSS (easydread.css, normalize.css)
   video/            # Video files (.mov) - large files
+  CNAME             # Custom domain for GitHub Pages
+  .nojekyll         # Disables Jekyll processing on GitHub Pages
 scripts/
-  ftp-download.sh   # Downloads site from FTP using 1Password credentials
-  ftp-upload.sh     # Uploads changed files to FTP (uses lftp)
+  ftp-download.sh   # Downloads site from FTP using 1Password credentials (legacy)
+  ftp-upload.sh     # Uploads changed files to FTP (legacy, pre-GH Pages)
 ```
 
 ## FTP Access
