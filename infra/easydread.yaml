@@ -83,6 +83,13 @@ Resources:
           ResourceRecords:
             - '"v=spf1 include:spf.improvmx.com ~all"'
 
+        # FTP — pinned directly to original server so it survives apex A change
+        - Name: ftp.easydread.com.
+          Type: A
+          TTL: 300
+          ResourceRecords:
+            - 178.79.166.99
+
 Outputs:
 
   IamUserName:

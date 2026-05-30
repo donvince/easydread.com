@@ -128,7 +128,7 @@ Zone ID: `Z05099481R278MSYRMTGJ`
 |------|------|---------------|--------|
 | `easydread.com.` | A | `178.79.166.99` (friend's server) | **Replace** with 4 GH Pages IPs |
 | `www.easydread.com.` | CNAME | `easydread.com.` | **Update** to `donvince.github.io.` |
-| `ftp.easydread.com.` | CNAME | `easydread.com.` | Keep |
+| `ftp.easydread.com.` | A | `178.79.166.99` | **Change** CNAME → A record, pinned to original server |
 | `easydread.com.` | MX | `mx1/mx2.improvmx.com.` | Keep (email forwarding) |
 | `easydread.com.` | TXT | SPF for ImprovMX | Keep |
 | `easydread.com.` | NS/SOA | AWS nameservers | Keep |
