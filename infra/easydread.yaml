@@ -1,0 +1,95 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: easydread.com infrastructure - IAM and Route 53
+
+Parameters:
+  HostedZoneId:
+    Type: String
+    Default: Z05099481R278MSYRMTGJ
+    Description: Route 53 hosted zone ID for easydread.com
+
+Resources:
+
+  # ---------------------------------------------------------------------------
+  # IAM
+  # ---------------------------------------------------------------------------
+
+  EasydreadCliUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: easydread-cli
+      Policies:
+        - PolicyName: easydread-route53
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - route53:ListResourceRecordSets
+                  - route53:ChangeResourceRecordSets
+                  - route53:GetHostedZone
+                  - route53:GetChange
+                Resource:
+                  - !Sub "arn:aws:route53:::hostedzone/${HostedZoneId}"
+                  - "arn:aws:route53:::change/*"
+              - Effect: Allow
+                Action:
+                  - route53:ListHostedZones
+                Resource: "*"
+
+  # ---------------------------------------------------------------------------
+  # Route 53 — GitHub Pages cutover
+  #
+  # Before: A → 178.79.166.99 (friend's server), www CNAME → easydread.com.
+  # After:  A → GitHub Pages IPs (x4), www CNAME → donvince.github.io.
+  #
+  # Unchanged: MX (ImprovMX), TXT/SPF, NS, SOA
+  # Removed:   ftp.easydread.com CNAME (FTP hosting retired)
+  # ---------------------------------------------------------------------------
+
+  EasydreadDnsRecords:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      RecordSets:
+
+        # Apex A records — GitHub Pages
+        - Name: easydread.com.
+          Type: A
+          TTL: 300
+          ResourceRecords:
+            - 185.199.108.153
+            - 185.199.109.153
+            - 185.199.110.153
+            - 185.199.111.153
+
+        # www — GitHub Pages
+        - Name: www.easydread.com.
+          Type: CNAME
+          TTL: 300
+          ResourceRecords:
+            - donvince.github.io.
+
+        # Email (ImprovMX) — unchanged
+        - Name: easydread.com.
+          Type: MX
+          TTL: 300
+          ResourceRecords:
+            - 10 mx1.improvmx.com.
+            - 20 mx2.improvmx.com.
+
+        # SPF (ImprovMX) — unchanged
+        - Name: easydread.com.
+          Type: TXT
+          TTL: 300
+          ResourceRecords:
+            - '"v=spf1 include:spf.improvmx.com ~all"'
+
+Outputs:
+
+  IamUserName:
+    Value: !Ref EasydreadCliUser
+    Description: IAM user for easydread CLI operations
+
+  IamUserArn:
+    Value: !GetAtt EasydreadCliUser.Arn
+    Description: ARN of the easydread IAM user

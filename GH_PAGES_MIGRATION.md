@@ -122,4 +122,33 @@ www.easydread.com  CNAME  donvince.github.io
 
 ## AWS Route 53 Findings
 
-*To be filled in once DNS records are retrieved.*
+Zone ID: `Z05099481R278MSYRMTGJ`
+
+| Name | Type | Current value | Action |
+|------|------|---------------|--------|
+| `easydread.com.` | A | `178.79.166.99` (friend's server) | **Replace** with 4 GH Pages IPs |
+| `www.easydread.com.` | CNAME | `easydread.com.` | **Update** to `donvince.github.io.` |
+| `ftp.easydread.com.` | CNAME | `easydread.com.` | **Remove** (FTP hosting retired) |
+| `easydread.com.` | MX | `mx1/mx2.improvmx.com.` | Keep (email forwarding) |
+| `easydread.com.` | TXT | SPF for ImprovMX | Keep |
+| `easydread.com.` | NS/SOA | AWS nameservers | Keep |
+
+DNS changes are codified in `infra/easydread.yaml` (CloudFormation).
+
+### Deploying the CF stack
+
+```bash
+# First deploy (creates IAM user + updates DNS)
+aws cloudformation deploy \
+  --template-file infra/easydread.yaml \
+  --stack-name easydread \
+  --capabilities CAPABILITY_NAMED_IAM \
+  --profile don-root
+
+# Generate access key for the new IAM user (do once after stack creates)
+aws iam create-access-key --user-name easydread-cli --profile don-root
+
+# Add the new profile locally
+aws configure --profile easydread
+# Use the key/secret from above; region = eu-west-1
+```
