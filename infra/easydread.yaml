@@ -1,8 +1,9 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: easydread.com infrastructure - IAM
+Description: easydread.com infrastructure - IAM and Route 53
 
-# Route 53 DNS changes are handled by scripts/dns-cutover.sh (UPSERT/DELETE+CREATE)
-# CloudFormation cannot create records that already exist, so we keep DNS out of CF.
+# Deploy order:
+#   1. scripts/dns-delete.sh  — removes existing records so CF can own them
+#   2. scripts/cf-deploy.sh   — creates IAM user + all DNS records under CF
 
 Parameters:
   HostedZoneId:
@@ -11,6 +12,10 @@ Parameters:
     Description: Route 53 hosted zone ID for easydread.com
 
 Resources:
+
+  # ---------------------------------------------------------------------------
+  # IAM
+  # ---------------------------------------------------------------------------
 
   EasydreadCliUser:
     Type: AWS::IAM::User
@@ -34,6 +39,61 @@ Resources:
                 Action:
                   - route53:ListHostedZones
                 Resource: "*"
+
+  # ---------------------------------------------------------------------------
+  # Route 53
+  #
+  # Before: A → 178.79.166.99 (friend's server), www/ftp CNAME → easydread.com.
+  # After:  A → GitHub Pages IPs (x4), www CNAME → donvince.github.io.,
+  #         ftp A → 178.79.166.99 (pinned, independent of apex)
+  #
+  # Unchanged: MX (ImprovMX), TXT/SPF, NS, SOA
+  # ---------------------------------------------------------------------------
+
+  EasydreadDnsRecords:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      RecordSets:
+
+        # Apex A records — GitHub Pages
+        - Name: easydread.com.
+          Type: A
+          TTL: 300
+          ResourceRecords:
+            - 185.199.108.153
+            - 185.199.109.153
+            - 185.199.110.153
+            - 185.199.111.153
+
+        # www — GitHub Pages
+        - Name: www.easydread.com.
+          Type: CNAME
+          TTL: 300
+          ResourceRecords:
+            - donvince.github.io.
+
+        # FTP — pinned to original server, independent of apex
+        - Name: ftp.easydread.com.
+          Type: A
+          TTL: 300
+          ResourceRecords:
+            - 178.79.166.99
+
+        # Email (ImprovMX) — unchanged
+        - Name: easydread.com.
+          Type: MX
+          TTL: 300
+          ResourceRecords:
+            - 10 mx1.improvmx.com.
+            - 20 mx2.improvmx.com.
+
+        # SPF (ImprovMX) — unchanged
+        - Name: easydread.com.
+          Type: TXT
+          TTL: 300
+          ResourceRecords:
+            - '"v=spf1 include:spf.improvmx.com ~all"'
 
 Outputs:
 
