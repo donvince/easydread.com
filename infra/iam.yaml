@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: easydread.com IAM — creates easydread-cli user
+
+# Deployed with don-root. Run once (or when permissions change).
+# After deploy, generate an access key and run: aws configure --profile easydread
+
+Parameters:
+  HostedZoneId:
+    Type: String
+    Default: Z05099481R278MSYRMTGJ
+  DnsStackName:
+    Type: String
+    Default: easydread-dns
+
+Resources:
+
+  EasydreadCliUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: easydread-cli
+      Policies:
+        - PolicyName: easydread-route53
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - route53:ListResourceRecordSets
+                  - route53:ChangeResourceRecordSets
+                  - route53:GetHostedZone
+                  - route53:GetChange
+                Resource:
+                  - !Sub "arn:aws:route53:::hostedzone/${HostedZoneId}"
+                  - "arn:aws:route53:::change/*"
+              - Effect: Allow
+                Action:
+                  - route53:ListHostedZones
+                Resource: "*"
+        - PolicyName: easydread-cfn-dns-stack
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - cloudformation:DescribeStacks
+                  - cloudformation:CreateChangeSet
+                  - cloudformation:DescribeChangeSet
+                  - cloudformation:ExecuteChangeSet
+                  - cloudformation:DeleteChangeSet
+                  - cloudformation:DescribeStackEvents
+                  - cloudformation:GetTemplate
+                Resource:
+                  - !Sub "arn:aws:cloudformation:eu-west-1:${AWS::AccountId}:stack/${DnsStackName}/*"
+              - Effect: Allow
+                Action:
+                  - cloudformation:ValidateTemplate
+                  - cloudformation:GetTemplateSummary
+                Resource: "*"
+
+Outputs:
+  IamUserArn:
+    Value: !GetAtt EasydreadCliUser.Arn
