@@ -1,0 +1,25 @@
+name: Deploy DNS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - infra/dns.yaml
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Deploy DNS stack
+        run: |
+          aws cloudformation deploy \
+            --template-file infra/dns.yaml \
+            --stack-name easydread-dns
