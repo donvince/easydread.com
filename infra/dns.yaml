@@ -34,7 +34,8 @@ Resources:
           ResourceRecords:
             - donvince.github.io.
 
-        # FTP — pinned to original server, independent of apex
+        # FTP — pinned directly to original server IP so it remains
+        # unaffected when the apex A record changes
         - Name: ftp.easydread.com.
           Type: A
           TTL: 300
