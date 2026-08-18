@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>easydread: electronic press kit</title>
+  <link rel="icon" type="image/gif" href="../images/easypac.gif" />
+  <meta name="description" content="Electronic press kit for easydread, a Conscious-Rock-Reggae band from Bedfordshire." />
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #000;
+      color: #fff;
+    }
+
+    body {
+      font-family: "Cooper Black", Cooper, Georgia, serif;
+      font-weight: 700;
+      line-height: 1.15;
+      text-align: center;
+    }
+
+    .epk {
+      max-width: 980px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 42px 32px 46px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 52px;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(4rem, 13vw, 9rem);
+      line-height: .72;
+      letter-spacing: -0.06em;
+      text-transform: lowercase;
+    }
+
+    .kicker {
+      margin-top: 18px;
+      font-size: clamp(1.25rem, 3.1vw, 2.3rem);
+      text-transform: lowercase;
+    }
+
+    .tagline {
+      max-width: 900px;
+      margin: 26px auto 0;
+      font-size: clamp(1.2rem, 2.4vw, 2rem);
+    }
+
+    .columns {
+      display: grid;
+      align-items: center;
+      gap: 42px 80px;
+    }
+
+    .two-columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .three-columns {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: end;
+      gap: 28px;
+    }
+
+    .section {
+      max-width: 430px;
+      margin: 0 auto;
+      font-size: clamp(.95rem, 1.55vw, 1.25rem);
+    }
+
+    .section h2 {
+      margin-bottom: 4px;
+      font-size: 1em;
+    }
+
+    .members {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .quote {
+      font-size: clamp(.86rem, 1.35vw, 1.1rem);
+    }
+
+    .quote cite {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+    }
+
+    @media (max-width: 720px) {
+      .epk {
+        padding: 28px 20px 34px;
+        gap: 36px;
+      }
+
+      .two-columns,
+      .three-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      html,
+      body {
+        width: 210mm;
+        min-height: 297mm;
+      }
+
+      .epk {
+        min-height: calc(297mm - 28mm);
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="epk" aria-labelledby="page-title">
+    <header>
+      <h1 id="page-title">easydread</h1>
+      <p class="kicker">electronic press kit.</p>
+      <p class="tagline">Reggae, ska, punk fusion bringing big brass, big bounce, and high energy festival vibes from Bedfordshire, UK.</p>
+    </header>
+
+    <section class="columns two-columns" aria-label="Band introduction and members">
+      <div class="section">
+        <p>Easydread blend reggae groove, ska energy, and punk attitude into a colourful, high-tempo live sound rooted in UK festival culture. Their music is built for movement: upbeat guitars, bouncing horn lines, dub-infused breakdowns, and choruses that pull whole crowds in.</p>
+      </div>
+
+      <div class="section">
+        <h2>Band Members</h2>
+        <ul class="members">
+          <li>Steve - Vocals &amp; Guitars</li>
+          <li>Dope - Bass &amp; Smiles</li>
+          <li>Nikki - Keyboards &amp; Vocals</li>
+          <li>Shaun - Drums &amp; Posters</li>
+          <li>Lloyd - Trumpet &amp; Vocals</li>
+          <li>Jon - Saxophone &amp; Vocals</li>
+          <li>Olivia - Trombone &amp; Vocals</li>
+          <li>James - Saxophone &amp; Brown note</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Blah Blah Blah</h2>
+        <p>Something about gigs we have played. Definitely mention BOOM TOWN in this section as well as a few EPs and a brand new album.</p>
+      </div>
+
+      <div class="section">
+        <p>The Sound of the Uprising is Easydread's latest burst of reggae warmth, ska-bright brass, and punk-charged energy, capturing the feelgood chaos of a band built for festival stages. The record celebrates togetherness, movement, and real-life stories, blending bouncing horn lines, dub-soaked textures, and sing-ready hooks into a soundtrack for anyone who's ever found joy in a crowd.</p>
+      </div>
+    </section>
+
+    <section class="columns three-columns" aria-label="Press quotes">
+      <blockquote class="quote">
+        <p>Solid and soulful, there is lots to like for those looking to keep up with the reggae punk scene today, including the depth of brass and keys, and evergreen topics of Babylon bashing and romance.</p>
+        <cite>&mdash; Posh Punk Blog</cite>
+      </blockquote>
+
+      <blockquote class="quote">
+        <p>The horns definitely bring to mind The Specials... a fine example that Easydread can do both slow, soulful songs and upbeat danceable songs brilliantly.</p>
+        <cite>&mdash; Colin's Punk Rock World</cite>
+      </blockquote>
+
+      <blockquote class="quote">
+        <p>One of Easydread's most obvious assets is their penchant for a memorable, catchy chorus... the groove has your feet tapping before you've begun to notice.</p>
+        <cite>&mdash; Yack Magazine</cite>
+      </blockquote>
+    </section>
+  </main>
+</body>
+</html>
