@@ -74,6 +74,10 @@
       text-transform: lowercase;
     }
 
+    .title-lockup {
+      display: inline-block;
+    }
+
     .rasta-word {
       display: inline-block;
       text-transform: lowercase;
@@ -99,8 +103,10 @@
     }
 
     .kicker {
-      margin-top: 18px;
+      margin-top: -.05em;
+      padding-right: .18em;
       font-size: clamp(1.25rem, 3.1vw, 2.3rem);
+      text-align: right;
       text-transform: lowercase;
     }
 
@@ -182,10 +188,12 @@
 <body>
   <main class="epk" aria-labelledby="page-title">
     <header>
-      <h1 id="page-title">
-        <span class="rasta-word" aria-label="easydread"><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">s</span><span aria-hidden="true">y</span><span aria-hidden="true">d</span><span aria-hidden="true">r</span><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">d</span></span>
-      </h1>
-      <p class="kicker">electronic press kit.</p>
+      <div class="title-lockup">
+        <h1 id="page-title">
+          <span class="rasta-word" aria-label="easydread"><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">s</span><span aria-hidden="true">y</span><span aria-hidden="true">d</span><span aria-hidden="true">r</span><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">d</span></span>
+        </h1>
+        <p class="kicker">electronic press kit.</p>
+      </div>
       <p class="tagline">Reggae, ska, punk fusion bringing big brass, big bounce, and high energy festival vibes from Bedfordshire, UK.</p>
     </header>
 
