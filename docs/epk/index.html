@@ -78,20 +78,21 @@
       display: inline-block;
     }
 
-    .rasta-word {
+    .red-gold-green {
       display: inline-block;
       text-transform: lowercase;
-    }
-
-    .rasta-word span:nth-child(3n+1) {
       color: #e31b23;
     }
 
-    .rasta-word span:nth-child(3n+2) {
+    .red-gold-green span:nth-child(3n+1) {
+      color: #e31b23;
+    }
+
+    .red-gold-green span:nth-child(3n+2) {
       color: #f9c80e;
     }
 
-    .rasta-word span:nth-child(3n) {
+    .red-gold-green span:nth-child(3n) {
       color: #00a651;
     }
 
@@ -190,7 +191,7 @@
     <header>
       <div class="title-lockup">
         <h1 id="page-title">
-          <span class="rasta-word" aria-label="easydread"><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">s</span><span aria-hidden="true">y</span><span aria-hidden="true">d</span><span aria-hidden="true">r</span><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">d</span></span>
+          <span class="red-gold-green">easydread</span>
         </h1>
         <p class="kicker">electronic press kit</p>
       </div>
@@ -199,7 +200,7 @@
 
     <section class="columns two-columns" aria-label="Band introduction and members">
       <div class="section">
-        <p><span class="rasta-word" aria-label="easydread"><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">s</span><span aria-hidden="true">y</span><span aria-hidden="true">d</span><span aria-hidden="true">r</span><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">d</span></span> blend reggae groove, ska energy, and punk attitude into a colourful, high-tempo live sound rooted in UK festival culture. Their music is built for movement: upbeat guitars, bouncing horn lines, dub-infused breakdowns, and choruses that pull whole crowds in.</p>
+        <p><span class="red-gold-green">easydread</span> blend reggae groove, ska energy, and punk attitude into a colourful, high-tempo live sound rooted in UK festival culture. Their music is built for movement: upbeat guitars, bouncing horn lines, dub-infused breakdowns, and choruses that pull whole crowds in.</p>
       </div>
 
       <div class="section">
@@ -222,7 +223,7 @@
       </div>
 
       <div class="section">
-        <p><span class="release-title">Sound of the Uprising</span> is <span class="rasta-word" aria-label="easydread"><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">s</span><span aria-hidden="true">y</span><span aria-hidden="true">d</span><span aria-hidden="true">r</span><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">d</span></span>'s latest burst of reggae warmth, ska-bright brass, and punk-charged energy, capturing the feelgood chaos of a band built for festival stages. The record celebrates togetherness, movement, and real-life stories, blending bouncing horn lines, dub-soaked textures, and sing-ready hooks into a soundtrack for anyone who's ever found joy in a crowd.</p>
+        <p><span class="release-title">Sound of the Uprising</span> is <span class="red-gold-green">easydread</span>'s latest burst of reggae warmth, ska-bright brass, and punk-charged energy, capturing the feelgood chaos of a band built for festival stages. The record celebrates togetherness, movement, and real-life stories, blending bouncing horn lines, dub-soaked textures, and sing-ready hooks into a soundtrack for anyone who's ever found joy in a crowd.</p>
       </div>
     </section>
 
@@ -233,15 +234,29 @@
       </blockquote>
 
       <blockquote class="quote">
-        <p>The horns definitely bring to mind The Specials... a fine example that <span class="rasta-word" aria-label="easydread"><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">s</span><span aria-hidden="true">y</span><span aria-hidden="true">d</span><span aria-hidden="true">r</span><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">d</span></span> can do both slow, soulful songs and upbeat danceable songs brilliantly.</p>
+        <p>The horns definitely bring to mind The Specials... a fine example that <span class="red-gold-green">easydread</span> can do both slow, soulful songs and upbeat danceable songs brilliantly.</p>
         <cite>&mdash; Colin's Punk Rock World</cite>
       </blockquote>
 
       <blockquote class="quote">
-        <p>One of <span class="rasta-word" aria-label="easydread"><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">s</span><span aria-hidden="true">y</span><span aria-hidden="true">d</span><span aria-hidden="true">r</span><span aria-hidden="true">e</span><span aria-hidden="true">a</span><span aria-hidden="true">d</span></span>'s most obvious assets is their penchant for a memorable, catchy chorus... the groove has your feet tapping before you've begun to notice.</p>
+        <p>One of <span class="red-gold-green">easydread</span>'s most obvious assets is their penchant for a memorable, catchy chorus... the groove has your feet tapping before you've begun to notice.</p>
         <cite>&mdash; Yack Magazine</cite>
       </blockquote>
     </section>
   </main>
+  <script>
+    document.querySelectorAll(".red-gold-green").forEach((word) => {
+      const text = word.textContent;
+      word.setAttribute("aria-label", text);
+      word.textContent = "";
+
+      Array.from(text).forEach((letter) => {
+        const span = document.createElement("span");
+        span.setAttribute("aria-hidden", "true");
+        span.textContent = letter;
+        word.appendChild(span);
+      });
+    });
+  </script>
 </body>
 </html>
