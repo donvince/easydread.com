@@ -1,3 +1,6 @@
 # Large video files - kept locally but not in git
 site/video/
 site/video
+
+# Locally generated PDF previews
+output/pdf/
