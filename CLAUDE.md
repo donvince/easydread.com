@@ -50,7 +50,7 @@ Requires `lftp` (`brew install lftp`). Only uploads files newer than remote.
 ### Local testing
 
 ```bash
-cd site && python -m http.server 8000
+make serve
 ```
 
 Then open http://localhost:8000

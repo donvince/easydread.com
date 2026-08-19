@@ -1,10 +1,16 @@
 DOCKER ?= docker
+PYTHON ?= python3
+PORT ?= 8000
+SITE_DIR ?= docs
 CHROMIUM_IMAGE_VERSION := 1.62.0
 PDF_IMAGE ?= easydread-pdf:chromium-$(CHROMIUM_IMAGE_VERSION)
 PDF_OUTPUT ?= output/pdf/easydread-epk.pdf
 PDF_PAGE ?= /epk/
 
-.PHONY: pdf pdf-site
+.PHONY: serve pdf pdf-site
+
+serve:
+	$(PYTHON) -m http.server "$(PORT)" --directory "$(SITE_DIR)"
 
 pdf:
 	@mkdir -p "$(dir $(PDF_OUTPUT))"
