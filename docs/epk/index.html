@@ -207,8 +207,18 @@
       }
 
       .epk {
-        min-height: calc(297mm - 28mm);
-        padding: 0;
+        height: calc(297mm - 28mm);
+        min-height: 0;
+        padding: 2mm 2mm 28mm;
+        border: 5mm solid #000;
+        gap: 7mm;
+      }
+
+      .links {
+        position: fixed;
+        right: 7mm;
+        bottom: 7mm;
+        left: 7mm;
       }
     }
   </style>
@@ -271,7 +281,7 @@
       </blockquote>
     </section>
 
-    <section class="links" aria-labelledby="links-heading">
+    <footer class="links" aria-labelledby="links-heading">
       <h2 id="links-heading">Find us online:</h2>
       <ul class="link-list">
         <li><a href="https://open.spotify.com/artist/6691HL2D343nTpKjhm2raJ">Spotify</a></li>
@@ -287,7 +297,7 @@
         <li><a href="https://www.youtube.com/@easydreadmusic">youtube.com/@easydreadmusic</a></li>
         <li><a href="https://linktr.ee/easydread">linktr.ee/easydread</a></li>
       </ul>
-    </section>
+    </footer>
   </main>
   <script>
     document.querySelectorAll(".red-gold-green").forEach((word) => {
