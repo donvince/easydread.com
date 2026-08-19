@@ -26,12 +26,12 @@
     }
 
     :root {
-      --ink: #151515;
-      --paper: #fffdf7;
+      --ink: #fff;
+      --paper: #000;
       --red: #db2d31;
       --gold: #efb91f;
       --green: #16834a;
-      --muted: #6b655c;
+      --muted: #d7d7d7;
     }
 
     @page {
@@ -43,7 +43,7 @@
 
     html, body {
       margin: 0;
-      background: #dedbd3;
+      background: #000;
       color: var(--ink);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.42;
@@ -66,7 +66,7 @@
       padding: 11mm 12mm 10mm;
       overflow: hidden;
       background: var(--paper);
-      box-shadow: 0 3mm 10mm rgba(0, 0, 0, .16);
+      box-shadow: 0 3mm 10mm rgba(255, 255, 255, .14);
     }
 
     .page::before {
@@ -87,14 +87,16 @@
       border-bottom: .55mm solid var(--ink);
     }
 
-    .wordmark {
+    .brand {
       margin: 0;
-      color: var(--ink);
-      font-family: "Caprasimo", Georgia, serif;
-      font-size: 15mm;
-      font-weight: 400;
-      line-height: .82;
-      letter-spacing: -.7mm;
+      line-height: 0;
+    }
+
+    .brand-logo {
+      display: block;
+      width: 72mm;
+      max-width: 100%;
+      height: auto;
     }
 
     .document-label {
@@ -256,7 +258,7 @@
     .quote {
       margin: 0 0 3.7mm;
       padding: 0 0 3.5mm 4mm;
-      border-bottom: .25mm solid #a8a298;
+      border-bottom: .25mm solid #555;
       border-left: 1mm solid var(--green);
       font-family: Georgia, "Times New Roman", serif;
       font-size: 3.15mm;
@@ -324,7 +326,8 @@
     .booking {
       margin-top: 4.5mm;
       padding: 3mm 4mm;
-      background: var(--ink);
+      border: .3mm solid var(--ink);
+      background: #151515;
       color: #fff;
       font-size: 3.15mm;
       text-align: center;
@@ -352,7 +355,7 @@
     @media print {
       html, body {
         width: 210mm;
-        background: var(--paper);
+        background: #000;
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
       }
@@ -381,6 +384,7 @@
       .intro-grid, .press-grid, .link-groups, .members { grid-template-columns: 1fr; }
       .wide-photo { position: relative; right: auto; bottom: auto; left: auto; height: 260px; margin: 28px 0 0; }
       .portrait-one, .portrait-two { min-height: 420px; }
+      .brand-logo { width: 270px; }
     }
   </style>
 </head>
@@ -388,7 +392,7 @@
   <main aria-label="easydread electronic press kit">
     <article class="page page-one" aria-labelledby="page-title">
       <header class="masthead">
-        <h1 class="wordmark" id="page-title" aria-label="easydread">easydread</h1>
+        <h1 class="brand" id="page-title"><a href="/"><img class="brand-logo" src="../images/easydread-logo.png" alt="easydread"></a></h1>
         <p class="document-label">Electronic Press Kit / 2026</p>
       </header>
 
@@ -432,7 +436,7 @@
 
     <article class="page page-two" aria-labelledby="connections-heading">
       <header class="masthead">
-        <p class="wordmark" aria-label="easydread">easydread</p>
+        <p class="brand"><a href="/"><img class="brand-logo" src="../images/easydread-logo.png" alt="easydread"></a></p>
         <p class="document-label">Electronic Press Kit / 2026</p>
       </header>
 
@@ -502,17 +506,5 @@
     </article>
   </main>
 
-  <script>
-    document.querySelectorAll(".wordmark").forEach((word) => {
-      const text = word.textContent;
-      word.textContent = "";
-      Array.from(text).forEach((letter) => {
-        const span = document.createElement("span");
-        span.setAttribute("aria-hidden", "true");
-        span.textContent = letter;
-        word.appendChild(span);
-      });
-    });
-  </script>
 </body>
 </html>
