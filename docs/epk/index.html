@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>easydread: electronic press kit</title>
-  <link rel="icon" type="image/gif" href="../images/easypac.gif" />
+  <link rel="icon" type="image/gif" href="../images/easypac.gif">
   <link rel="preload" href="../fonts/caprasimo/Caprasimo-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/bebas-neue/BebasNeue-Regular.ttf" as="font" type="font/ttf" crossorigin>
-  <meta name="description" content="Electronic press kit for easydread, a Conscious-Rock-Reggae band from Bedfordshire." />
+  <meta name="description" content="Electronic press kit for easydread, a Conscious-Rock-Reggae band from Bedfordshire.">
   <style>
     @font-face {
       font-family: "Caprasimo";
@@ -15,7 +15,6 @@
       font-weight: 400;
       font-display: swap;
       src: url("../fonts/caprasimo/Caprasimo-Regular-latin.woff2") format("woff2");
-      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
 
     @font-face {
@@ -26,285 +25,487 @@
       src: url("../fonts/bebas-neue/BebasNeue-Regular.ttf") format("truetype");
     }
 
+    :root {
+      --ink: #151515;
+      --paper: #fffdf7;
+      --red: #db2d31;
+      --gold: #efb91f;
+      --green: #16834a;
+      --muted: #6b655c;
+    }
+
     @page {
       size: A4;
-      margin: 14mm;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
       margin: 0;
-      min-height: 100%;
-      background: #000;
-      color: #fff;
     }
 
-    body {
-      font-family: "Caprasimo", "Cooper Black", Cooper, Georgia, serif;
-      font-weight: 400;
-      line-height: 1.15;
-      text-align: center;
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      background: #dedbd3;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.42;
     }
 
-    .epk {
-      max-width: 980px;
-      min-height: 100vh;
-      margin: 0 auto;
-      padding: 42px 32px 46px;
+    a {
+      color: inherit;
+      text-decoration-color: var(--green);
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 2px;
+    }
+
+    h1, h2, h3, p, blockquote, ul { margin-top: 0; }
+
+    .page {
+      position: relative;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 12mm auto;
+      padding: 11mm 12mm 10mm;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: 0 3mm 10mm rgba(0, 0, 0, .16);
+    }
+
+    .page::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3.2mm;
+      content: "";
+      background: linear-gradient(90deg, var(--red) 0 33.333%, var(--gold) 33.333% 66.666%, var(--green) 66.666%);
+    }
+
+    .masthead {
       display: flex;
-      flex-direction: column;
+      align-items: flex-end;
       justify-content: space-between;
-      gap: 52px;
+      padding-bottom: 4mm;
+      border-bottom: .55mm solid var(--ink);
     }
 
-    h1,
-    h2,
-    p {
+    .wordmark {
       margin: 0;
-    }
-
-    h1 {
-      font-size: clamp(4rem, 13vw, 9rem);
-      line-height: .72;
-      letter-spacing: -0.06em;
-      text-transform: lowercase;
-    }
-
-    .title-lockup {
-      display: inline-block;
-    }
-
-    .red-gold-green {
-      display: inline-block;
-      text-transform: lowercase;
-      color: #e31b23;
-    }
-
-    .red-gold-green span:nth-child(3n+1) {
-      color: #e31b23;
-    }
-
-    .red-gold-green span:nth-child(3n+2) {
-      color: #f9c80e;
-    }
-
-    .red-gold-green span:nth-child(3n) {
-      color: #00a651;
-    }
-
-    .release-title {
-      font-family: "Bebas Neue", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      color: var(--ink);
+      font-family: "Caprasimo", Georgia, serif;
+      font-size: 15mm;
       font-weight: 400;
-      letter-spacing: .03em;
+      line-height: .82;
+      letter-spacing: -.7mm;
+    }
+
+    .document-label {
+      margin: 0;
+      color: var(--muted);
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 4.8mm;
+      letter-spacing: .45mm;
+      line-height: 1;
       text-transform: uppercase;
     }
 
-    .kicker {
-      margin-top: -.05em;
-      padding-right: .18em;
-      font-size: clamp(1.25rem, 3.1vw, 2.3rem);
-      text-align: right;
-      text-transform: lowercase;
-    }
-
     .tagline {
-      max-width: 900px;
-      margin: 26px auto 0;
-      font-size: clamp(1.2rem, 2.4vw, 2rem);
+      margin: 4.2mm 0;
+      padding-bottom: 4mm;
+      border-bottom: .3mm solid var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 4.35mm;
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1.25;
+      text-align: center;
     }
 
-    .columns {
+    .section-title {
+      margin: 0 0 2.4mm;
+      padding-bottom: 1mm;
+      border-bottom: .32mm solid var(--ink);
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 6.4mm;
+      font-weight: 400;
+      letter-spacing: .2mm;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .intro-grid {
       display: grid;
-      align-items: center;
-      gap: 42px 80px;
+      grid-template-columns: 1.18fr .82fr;
+      gap: 6mm;
+      align-items: stretch;
     }
 
-    .two-columns {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .copy {
+      font-size: 3.25mm;
     }
 
-    .three-columns {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      align-items: end;
-      gap: 28px;
+    .copy p { margin-bottom: 3.3mm; }
+    .copy p:last-child { margin-bottom: 0; }
+
+    .release {
+      margin-top: 4.6mm;
+      padding-top: 3.8mm;
+      border-top: .3mm solid var(--ink);
     }
 
-    .section {
-      max-width: 430px;
-      margin: 0 auto;
-      font-size: clamp(.95rem, 1.55vw, 1.25rem);
+    .release-name {
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 4.7mm;
+      letter-spacing: .18mm;
+      text-transform: uppercase;
     }
 
-    .section h2 {
-      margin-bottom: 4px;
-      font-size: 1em;
+    .photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: .35mm solid var(--ink);
+      object-fit: cover;
+      filter: saturate(.93) contrast(1.04);
+    }
+
+    .portrait-one {
+      min-height: 103mm;
+      object-position: 54% 44%;
+    }
+
+    .members-block {
+      margin-top: 5mm;
     }
 
     .members {
-      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.4mm 4mm;
       margin: 0;
       padding: 0;
+      list-style: none;
+      font-size: 3mm;
     }
 
-    .quote {
-      font-size: clamp(.86rem, 1.35vw, 1.1rem);
+    .members li {
+      padding-left: 2.3mm;
+      border-left: 1mm solid var(--gold);
     }
+
+    .members strong {
+      display: block;
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 4.3mm;
+      font-weight: 400;
+      letter-spacing: .15mm;
+      line-height: 1;
+    }
+
+    .wide-photo {
+      position: absolute;
+      right: 12mm;
+      bottom: 10mm;
+      left: 12mm;
+      height: 48mm;
+    }
+
+    .wide-photo img {
+      object-position: 50% 49%;
+    }
+
+    .wide-photo figcaption {
+      position: absolute;
+      right: 2mm;
+      bottom: 1.5mm;
+      margin: 0;
+      padding: .7mm 1.4mm;
+      background: rgba(16, 16, 16, .76);
+      color: #fff;
+      font-size: 2.25mm;
+      letter-spacing: .08mm;
+    }
+
+    .page-heading {
+      margin: 4.2mm 0;
+      padding-bottom: 3.2mm;
+      border-bottom: .3mm solid var(--ink);
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 8.8mm;
+      font-weight: 400;
+      letter-spacing: .45mm;
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .page-heading::before,
+    .page-heading::after {
+      color: var(--gold);
+      content: "—";
+      padding: 0 2.5mm;
+    }
+
+    .press-grid {
+      display: grid;
+      grid-template-columns: 1.24fr .76fr;
+      gap: 6mm;
+      align-items: stretch;
+    }
+
+    .quotes .section-title { margin-bottom: 3mm; }
+
+    .quote {
+      margin: 0 0 3.7mm;
+      padding: 0 0 3.5mm 4mm;
+      border-bottom: .25mm solid #a8a298;
+      border-left: 1mm solid var(--green);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 3.15mm;
+      font-style: italic;
+      line-height: 1.34;
+    }
+
+    .quote:last-child {
+      margin-bottom: 0;
+    }
+
+    .quote p { margin-bottom: 1.2mm; }
 
     .quote cite {
       display: block;
-      margin-top: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 2.65mm;
       font-style: normal;
+      font-weight: 700;
+      text-align: right;
     }
 
-    .links {
-      font-size: clamp(.84rem, 1.2vw, 1rem);
+    .portrait-two {
+      min-height: 100mm;
+      object-position: 76% center;
     }
 
-    .links h2 {
-      margin-bottom: 12px;
-      font-size: 1.05em;
+    .connections {
+      margin-top: 5mm;
     }
 
-    .link-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px 14px;
+    .link-groups {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5mm;
+    }
+
+    .link-group h3 {
+      margin: 0 0 1.5mm;
+      padding-bottom: 1mm;
+      border-bottom: .3mm solid var(--ink);
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 4.5mm;
+      font-weight: 400;
+      letter-spacing: .18mm;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .link-group ul {
       margin: 0;
       padding: 0;
       list-style: none;
+      font-size: 2.9mm;
+      line-height: 1.56;
     }
 
-    .link-list a {
-      color: #f9c80e;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 3px;
+    .link-group li::before {
+      color: var(--red);
+      content: "•";
+      padding-right: 1.5mm;
+      font-weight: 700;
     }
 
-    @media (max-width: 720px) {
-      .epk {
-        padding: 28px 20px 34px;
-        gap: 36px;
-      }
+    .booking {
+      margin-top: 4.5mm;
+      padding: 3mm 4mm;
+      background: var(--ink);
+      color: #fff;
+      font-size: 3.15mm;
+      text-align: center;
+    }
 
-      .two-columns,
-      .three-columns {
-        grid-template-columns: 1fr;
-      }
+    .booking strong {
+      color: var(--gold);
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 4.3mm;
+      font-weight: 400;
+      letter-spacing: .18mm;
+      text-transform: uppercase;
+    }
+
+    .booking a { color: #fff; }
+
+    .page-two .wide-photo {
+      height: 42mm;
+    }
+
+    .page-two .wide-photo img {
+      object-position: 50% center;
     }
 
     @media print {
-      html,
-      body {
+      html, body {
         width: 210mm;
-        min-height: 297mm;
+        background: var(--paper);
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
       }
 
-      .epk {
-        height: calc(297mm - 28mm);
-        min-height: 0;
-        padding: 2mm 2mm 28mm;
-        border: 5mm solid #000;
-        gap: 7mm;
+      .page {
+        height: 297mm;
+        min-height: 297mm;
+        margin: 0;
+        box-shadow: none;
       }
 
-      .links {
-        position: fixed;
-        right: 7mm;
-        bottom: 7mm;
-        left: 7mm;
+      .page + .page {
+        break-before: page;
+        page-break-before: always;
       }
+    }
+
+    @media screen and (max-width: 850px) {
+      .page {
+        width: 100%;
+        min-height: auto;
+        margin: 0;
+        padding: 28px 22px;
+      }
+
+      .intro-grid, .press-grid, .link-groups, .members { grid-template-columns: 1fr; }
+      .wide-photo { position: relative; right: auto; bottom: auto; left: auto; height: 260px; margin: 28px 0 0; }
+      .portrait-one, .portrait-two { min-height: 420px; }
     }
   </style>
 </head>
 <body>
-  <main class="epk" aria-labelledby="page-title">
-    <header>
-      <div class="title-lockup">
-        <h1 id="page-title">
-          <span class="red-gold-green">easydread</span>
-        </h1>
-        <p class="kicker">electronic press kit</p>
-      </div>
-      <p class="tagline">Reggae, ska, punk fusion bringing big brass, big bounce, and high energy festival vibes from Bedfordshire, UK.</p>
-    </header>
+  <main aria-label="easydread electronic press kit">
+    <article class="page page-one" aria-labelledby="page-title">
+      <header class="masthead">
+        <h1 class="wordmark" id="page-title" aria-label="easydread">easydread</h1>
+        <p class="document-label">Electronic Press Kit / 2026</p>
+      </header>
 
-    <section class="columns two-columns" aria-label="Band introduction and members">
-      <div class="section">
-        <p><span class="red-gold-green">easydread</span> blend reggae groove, ska energy, and punk attitude into a colourful, high-tempo live sound rooted in UK festival culture. Their music is built for movement: upbeat guitars, bouncing horn lines, dub-infused breakdowns, and choruses that pull whole crowds in.</p>
-      </div>
+      <p class="tagline">Reggae, ska &amp; punk fusion bringing big brass, big bounce and high-energy festival vibes from Bedfordshire, UK.</p>
 
-      <div class="section">
-        <h2>Band Members</h2>
+      <section class="intro-grid" aria-label="Band overview and latest release">
+        <div class="copy">
+          <h2 class="section-title">Band Overview</h2>
+          <p><strong>easydread</strong> blend reggae groove, ska energy, and punk attitude into a colourful, high-tempo live sound rooted in UK festival culture. Their music is built for movement: upbeat guitars, bouncing horn lines, dub-infused breakdowns, and choruses that pull whole crowds in.</p>
+          <p>Their music celebrates togetherness, community, and the joyfully chaotic spirit of live performance - the sound of people moving as one.</p>
+
+          <div class="release">
+            <h2 class="section-title">Latest Release</h2>
+            <p><span class="release-name">Sound of the Uprising</span> is easydread's latest burst of reggae warmth, ska-bright brass, and punk-charged energy, capturing the feelgood chaos of a band built for festival stages.</p>
+            <p>The record blends bouncing horn lines, dub-soaked textures and sing-ready hooks into a soundtrack for anyone who's ever found joy in a crowd.</p>
+          </div>
+        </div>
+
+        <img class="photo portrait-one" src="../images/easydread-balstock-by-neilmccarty.jpg" alt="easydread performing live at Balstock">
+      </section>
+
+      <section class="members-block" aria-labelledby="members-heading">
+        <h2 class="section-title" id="members-heading">Band Members</h2>
         <ul class="members">
-          <li>Steve 🎤 Vocals &amp; Guitars</li>
-          <li>Don 🎸 Bass &amp; Smiles</li>
-          <li>Nikki 🎹 Keyboards &amp; Vocals</li>
-          <li>Shaun 🥁 Drums &amp; Posters</li>
-          <li>Lloyd 🎺 Trumpet &amp; Vocals</li>
-          <li>Jon 🎷 Saxophone &amp; Vocals</li>
-          <li>Olivia 🪊 Trombone &amp; Vocals</li>
-          <li>James 🎷 Saxophone &amp; Brown note</li>
+          <li><strong>Steve</strong>Vocals &amp; guitars</li>
+          <li><strong>Don</strong>Bass &amp; smiles</li>
+          <li><strong>Nikki</strong>Keyboards &amp; vocals</li>
+          <li><strong>Shaun</strong>Drums &amp; posters</li>
+          <li><strong>Lloyd</strong>Trumpet &amp; vocals</li>
+          <li><strong>Jon</strong>Saxophone &amp; vocals</li>
+          <li><strong>Olivia</strong>Trombone &amp; vocals</li>
+          <li><strong>James</strong>Saxophone &amp; brown note</li>
         </ul>
-      </div>
+      </section>
 
-      <div class="section">
-        <h2>Our Story</h2>
-        <p>Boomtown. Album SOTU. EPs</p>
-      </div>
+      <figure class="wide-photo">
+        <img class="photo" src="../images/easydread-one-love.jpg" alt="easydread performing at One Love Festival">
+        <figcaption>Live at One Love Festival</figcaption>
+      </figure>
+    </article>
 
-      <div class="section">
-        <p><span class="release-title">Sound of the Uprising</span> is <span class="red-gold-green">easydread</span>'s latest burst of reggae warmth, ska-bright brass, and punk-charged energy, capturing the feelgood chaos of a band built for festival stages. The record celebrates togetherness, movement, and real-life stories, blending bouncing horn lines, dub-soaked textures, and sing-ready hooks into a soundtrack for anyone who's ever found joy in a crowd.</p>
-      </div>
-    </section>
+    <article class="page page-two" aria-labelledby="connections-heading">
+      <header class="masthead">
+        <p class="wordmark" aria-label="easydread">easydread</p>
+        <p class="document-label">Electronic Press Kit / 2026</p>
+      </header>
 
-    <section class="columns three-columns" aria-label="Press quotes">
-      <blockquote class="quote">
-        <p>Solid and soulful, there is lots to like for those looking to keep up with the reggae punk scene today, including the depth of brass and keys, and evergreen topics of Babylon bashing and romance.</p>
-        <cite>&mdash; <a href="https://poshpunk.blog/2026/03/01/album-review-easydread-sound-of-the-uprising/">Posh Punk Blog</a></cite>
-      </blockquote>
+      <h2 class="page-heading" id="connections-heading">Press &amp; Connections</h2>
 
-      <blockquote class="quote">
-        <p>The horns definitely bring to mind The Specials... a fine example that <span class="red-gold-green">easydread</span> can do both slow, soulful songs and upbeat danceable songs brilliantly.</p>
-        <cite>&mdash; <a href="https://colinspunkrockworld.blogspot.com/2017/03/album-review-fyah-by-easydread.html">Colin's Punk Rock World</a></cite>
-      </blockquote>
+      <section class="press-grid" aria-label="Press quotes and band photograph">
+        <div class="quotes">
+          <h3 class="section-title">Press Quotes</h3>
+          <blockquote class="quote">
+            <p>“Solid and soulful... the depth of brass and keys, and evergreen topics of Babylon bashing and romance.”</p>
+            <cite><a href="https://poshpunk.blog/2026/03/01/album-review-easydread-sound-of-the-uprising/">Posh Punk Blog</a></cite>
+          </blockquote>
+          <blockquote class="quote">
+            <p>“The horns definitely bring to mind The Specials... easydread can do both slow, soulful songs and upbeat danceable songs brilliantly.”</p>
+            <cite><a href="https://colinspunkrockworld.blogspot.com/2017/03/album-review-fyah-by-easydread.html">Colin's Punk Rock World</a></cite>
+          </blockquote>
+          <blockquote class="quote">
+            <p>“A memorable, catchy chorus... the groove has your feet tapping before you've begun to notice.”</p>
+            <cite><a href="https://yackmagazine.com/featured-artist-easydread/">Yack Magazine</a></cite>
+          </blockquote>
+        </div>
 
-      <blockquote class="quote">
-        <p>One of <span class="red-gold-green">easydread</span>'s most obvious assets is their penchant for a memorable, catchy chorus... the groove has your feet tapping before you've begun to notice.</p>
-        <cite>&mdash; <a href="https://yackmagazine.com/featured-artist-easydread/">Yack Magazine</a></cite>
-      </blockquote>
-    </section>
+        <img class="photo portrait-two" src="../images/drummer-boy-shaun-esquires-by-neilmccarty.jpg" alt="easydread drummer Shaun performing live">
+      </section>
 
-    <footer class="links" aria-labelledby="links-heading">
-      <h2 id="links-heading">Find us online:</h2>
-      <ul class="link-list">
-        <li><a href="https://open.spotify.com/artist/6691HL2D343nTpKjhm2raJ">Spotify</a></li>
-        <li><a href="https://merchydread.bigcartel.com/">merchydread.bigcartel.com</a></li>
-        <li><a href="https://www.bandsintown.com/a/10526741-easydread">Live Dates</a></li>
-        <li><a href="https://www.easydread.com">easydread.com</a></li>
-        <li><a href="https://easydread.bandcamp.com">easydread.bandcamp.com</a></li>
-        <li><a href="https://tidal.com/artist/8495296">Listen on Tidal</a></li>
-        <li><a href="https://music.amazon.ca/artists/B06XMR3QC7/easydread">Amazon Music</a></li>
-        <li><a href="https://music.apple.com/us/artist/easydread/1201869416">Apple Music</a></li>
-        <li><a href="https://www.facebook.com/easydread">facebook.com/easydread</a></li>
-        <li><a href="https://instagram.com/easydreadmusic">instagram.com/easydreadmusic</a></li>
-        <li><a href="https://www.youtube.com/@easydreadmusic">youtube.com/@easydreadmusic</a></li>
-        <li><a href="https://linktr.ee/easydread">linktr.ee/easydread</a></li>
-      </ul>
-    </footer>
+      <section class="connections" aria-labelledby="online-heading">
+        <h3 class="section-title" id="online-heading">Find Us Online</h3>
+        <div class="link-groups">
+          <div class="link-group">
+            <h3>Watch &amp; Follow</h3>
+            <ul>
+              <li><a href="https://www.youtube.com/@easydreadmusic">YouTube / @easydreadmusic</a></li>
+              <li><a href="https://instagram.com/easydreadmusic">Instagram / @easydreadmusic</a></li>
+              <li><a href="https://www.facebook.com/easydread">Facebook / easydread</a></li>
+              <li><a href="https://linktr.ee/easydread">Linktree / easydread</a></li>
+            </ul>
+          </div>
+
+          <div class="link-group">
+            <h3>Listen</h3>
+            <ul>
+              <li><a href="https://open.spotify.com/artist/6691HL2D343nTpKjhm2raJ">Spotify / easydread</a></li>
+              <li><a href="https://easydread.bandcamp.com">Bandcamp / easydread</a></li>
+              <li><a href="https://music.apple.com/us/artist/easydread/1201869416">Apple Music / easydread</a></li>
+              <li><a href="https://tidal.com/artist/8495296">Tidal / easydread</a></li>
+            </ul>
+          </div>
+
+          <div class="link-group">
+            <h3>Live &amp; More</h3>
+            <ul>
+              <li><a href="https://www.bandsintown.com/a/10526741-easydread">Bandsintown / live dates</a></li>
+              <li><a href="https://www.easydread.com">easydread.com</a></li>
+              <li><a href="https://merchydread.bigcartel.com/">merchydread / shop</a></li>
+              <li><a href="mailto:booking@easydread.com">booking@easydread.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <p class="booking"><strong>Bookings &amp; press:</strong> <a href="mailto:booking@easydread.com">booking@easydread.com</a> &nbsp;|&nbsp; <a href="https://www.easydread.com">www.easydread.com</a></p>
+
+      <figure class="wide-photo">
+        <img class="photo" src="../images/easy-horns-at-mk11-by-aperture-events-photography.jpg" alt="easydread horn section performing live">
+        <figcaption>Horn section live at MK11</figcaption>
+      </figure>
+    </article>
   </main>
-  <script>
-    document.querySelectorAll(".red-gold-green").forEach((word) => {
-      const text = word.textContent;
-      word.setAttribute("aria-label", text);
-      word.textContent = "";
 
+  <script>
+    document.querySelectorAll(".wordmark").forEach((word) => {
+      const text = word.textContent;
+      word.textContent = "";
       Array.from(text).forEach((letter) => {
         const span = document.createElement("span");
         span.setAttribute("aria-hidden", "true");
