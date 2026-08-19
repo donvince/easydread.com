@@ -11,6 +11,7 @@ const outputPath = resolve(
   process.env.PDF_OUTPUT || "output/pdf/easydread-epk.pdf",
 );
 const pagePath = process.env.PDF_PAGE || "/epk/";
+const chromiumShutdownTimeoutMs = 5_000;
 
 const contentTypes = {
   ".css": "text/css; charset=utf-8",
@@ -124,6 +125,30 @@ async function launchChromium(chromiumExecutable, profileDirectory) {
   });
 
   return { chromium, webSocketUrl };
+}
+
+async function waitForExit(childProcess, timeoutMs) {
+  if (childProcess.exitCode !== null || childProcess.signalCode !== null) return true;
+
+  let timeoutId;
+  const exit = once(childProcess, "exit").then(() => true);
+  const timeout = new Promise((accept) => {
+    timeoutId = setTimeout(() => accept(false), timeoutMs);
+  });
+
+  const didExit = await Promise.race([exit, timeout]);
+  clearTimeout(timeoutId);
+  return didExit;
+}
+
+async function stopChromium(chromium) {
+  if (chromium.exitCode !== null || chromium.signalCode !== null) return;
+
+  chromium.kill("SIGTERM");
+  if (await waitForExit(chromium, chromiumShutdownTimeoutMs)) return;
+
+  chromium.kill("SIGKILL");
+  await waitForExit(chromium, chromiumShutdownTimeoutMs);
 }
 
 class DevToolsConnection {
@@ -247,12 +272,13 @@ async function main() {
     console.log(`Generated ${outputPath} from ${url}`);
   } finally {
     if (connection) connection.webSocket.close();
-    if (launchedBrowser?.chromium.exitCode === null) {
-      const browserExited = once(launchedBrowser.chromium, "exit");
-      launchedBrowser.chromium.kill("SIGTERM");
-      await browserExited;
-    }
-    await rm(profileDirectory, { force: true, recursive: true });
+    if (launchedBrowser) await stopChromium(launchedBrowser.chromium);
+    await rm(profileDirectory, {
+      force: true,
+      maxRetries: 10,
+      recursive: true,
+      retryDelay: 100,
+    });
     await new Promise((accept, reject) => {
       server.close((error) => (error ? reject(error) : accept()));
     });
