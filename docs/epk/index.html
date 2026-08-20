@@ -295,6 +295,29 @@
       object-fit: cover;
     }
 
+    .video-poster-link {
+      position: relative;
+      display: none;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .video-poster-link::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      padding: 2mm 3.2mm;
+      border: .3mm solid var(--ink);
+      background: rgba(0, 0, 0, .72);
+      content: "Watch video";
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 5.4mm;
+      letter-spacing: .25mm;
+      line-height: 1;
+      text-transform: uppercase;
+      transform: translate(-50%, -50%);
+    }
+
     .portrait-two {
       min-height: 100mm;
       object-position: 76% center;
@@ -384,6 +407,14 @@
       .page + .page {
         break-before: page;
         page-break-before: always;
+      }
+
+      .portrait-video {
+        display: none;
+      }
+
+      .video-poster-link {
+        display: block;
       }
     }
 
@@ -482,6 +513,9 @@
         </div>
 
         <video class="photo portrait-two portrait-video" controls preload="metadata" poster="../images/bbc-introducing-quote-poster.jpg" src="../video/bbc-introducing-quote.mp4" aria-label="BBC Introducing quote video"></video>
+        <a class="video-poster-link" href="https://easydread.com/video/bbc-introducing-quote.mp4" aria-label="Watch the BBC Introducing quote video">
+          <img class="photo portrait-two" src="../images/bbc-introducing-quote-poster.jpg" alt="BBC Introducing quote video poster">
+        </a>
       </section>
 
       <section class="connections" aria-labelledby="online-heading">
