@@ -80,32 +80,36 @@
     }
 
     .masthead {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+      position: relative;
       padding-bottom: 4mm;
       border-bottom: .55mm solid var(--ink);
     }
 
     .brand {
+      position: relative;
       margin: 0;
       line-height: 0;
     }
 
     .brand-logo {
       display: block;
-      width: 72mm;
+      width: 50%;
       max-width: 100%;
       height: auto;
+      margin: 0 auto;
     }
 
     .document-label {
+      position: absolute;
+      right: 25%;
+      bottom: 6mm;
       margin: 0;
       color: var(--muted);
       font-family: "Bebas Neue", Impact, sans-serif;
       font-size: 4.8mm;
       letter-spacing: .45mm;
       line-height: 1;
+      text-shadow: 0 .4mm 1mm rgba(0, 0, 0, .9);
       text-transform: uppercase;
     }
 
@@ -429,7 +433,7 @@
       .intro-grid, .press-grid, .link-groups, .members { grid-template-columns: 1fr; }
       .wide-photo { position: relative; right: auto; bottom: auto; left: auto; height: 260px; margin: 28px 0 0; }
       .portrait-one, .portrait-two { min-height: 420px; }
-      .brand-logo { width: 270px; }
+      .document-label { right: 8px; bottom: 36px; font-size: 18px; letter-spacing: 1.5px; }
     }
   </style>
 </head>
