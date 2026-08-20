@@ -147,6 +147,12 @@
     .copy p { margin-bottom: 3.3mm; }
     .copy p:last-child { margin-bottom: 0; }
 
+    .band-name {
+      font-family: "Caprasimo", Georgia, serif;
+      font-style: normal;
+      font-weight: 400;
+    }
+
     .release {
       margin-top: 4.6mm;
       padding-top: 3.8mm;
@@ -281,6 +287,14 @@
       text-align: right;
     }
 
+    .portrait-video {
+      display: block;
+      width: 100%;
+      border: .25mm solid var(--ink);
+      background: #111;
+      object-fit: cover;
+    }
+
     .portrait-two {
       min-height: 100mm;
       object-position: 76% center;
@@ -401,36 +415,36 @@
       <section class="intro-grid" aria-label="Band overview and latest release">
         <div class="copy">
           <h2 class="section-title">Band Overview</h2>
-          <p><strong>easydread</strong> blend reggae groove, ska energy, and punk attitude into a colourful, high-tempo live sound rooted in UK festival culture. Their music is built for movement: upbeat guitars, bouncing horn lines, dub-infused breakdowns, and choruses that pull whole crowds in.</p>
+          <p><span class="band-name">easydread</span> blend reggae groove, ska energy, and punk attitude into a colourful, high-tempo live sound rooted in UK festival culture. Their music is built for movement: upbeat guitars, bouncing horn lines, dub-infused breakdowns, and choruses that pull whole crowds in.</p>
           <p>Their music celebrates togetherness, community, and the joyfully chaotic spirit of live performance - the sound of people moving as one.</p>
 
           <div class="release">
             <h2 class="section-title">Latest Release</h2>
-            <p><span class="release-name">Sound of the Uprising</span> is easydread's latest burst of reggae warmth, ska-bright brass, and punk-charged energy, capturing the feelgood chaos of a band built for festival stages.</p>
+            <p>Album <span class="release-name">Sound of the Uprising</span> is <span class="band-name">easydread</span>'s latest burst of reggae warmth, ska-bright brass, and punk-charged energy, capturing the feelgood chaos of a band built for festival stages.</p>
             <p>The record blends bouncing horn lines, dub-soaked textures and sing-ready hooks into a soundtrack for anyone who's ever found joy in a crowd.</p>
           </div>
         </div>
 
-        <img class="photo portrait-one" src="../images/easydread-balstock-by-neilmccarty.jpg" alt="easydread performing live at Balstock">
+        <img class="photo portrait-one" src="../images/epk-band-square.jpeg" alt="easydread band portrait">
       </section>
 
       <section class="members-block" aria-labelledby="members-heading">
         <h2 class="section-title" id="members-heading">Band Members</h2>
         <ul class="members">
           <li><strong>Steve</strong>Vocals &amp; guitars</li>
-          <li><strong>Don</strong>Bass (&amp; smiles)</li>
+          <li><strong>Don</strong>Bass</li>
           <li><strong>Nikki</strong>Keyboards &amp; vocals</li>
           <li><strong>Shaun</strong>Drums &amp; posters</li>
           <li><strong>Lloyd</strong>Trumpet &amp; vocals</li>
           <li><strong>Jon</strong>Saxophone &amp; vocals</li>
           <li><strong>Olivia</strong>Trombone &amp; vocals</li>
-          <li><strong>James</strong>Sax (&amp; brown note)</li>
+          <li><strong>James</strong>Sax</li>
         </ul>
       </section>
 
       <figure class="wide-photo">
-        <img class="photo" src="../images/easydread-one-love.jpg" alt="easydread performing at One Love Festival">
-        <figcaption>Live at One Love Festival</figcaption>
+        <img class="photo" src="../images/epk-band-landscape.jpeg" alt="easydread live on stage">
+        <figcaption><span class="band-name">easydread</span> live</figcaption>
       </figure>
     </article>
 
@@ -442,28 +456,32 @@
 
       <h2 class="page-heading" id="connections-heading">Press &amp; Connections</h2>
 
-      <section class="press-grid" aria-label="Press quotes and band photograph">
+      <section class="press-grid" aria-label="Press quotes and BBC Introducing video">
         <div class="quotes">
           <h3 class="section-title">Press Quotes</h3>
+          <blockquote class="quote">
+            <p>“Get moving on the dance floor, get bouncing around &mdash; <span class="band-name">easydread</span> guarantee a good time.”</p>
+            <cite>BBC Introducing</cite>
+          </blockquote>
+          <blockquote class="quote">
+            <p>“Bidi bidi bong bong bidi bong bong bidi beng, big up the band they call <span class="band-name">easydread</span>.”</p>
+            <cite>Eek-A-Mouse</cite>
+          </blockquote>
           <blockquote class="quote">
             <p>“Solid and soulful... the depth of brass and keys, and evergreen topics of Babylon bashing and romance.”</p>
             <cite><a href="https://poshpunk.blog/2026/03/01/album-review-easydread-sound-of-the-uprising/">Posh Punk Blog</a></cite>
           </blockquote>
           <blockquote class="quote">
-            <p>“The horns definitely bring to mind The Specials... easydread can do both slow, soulful songs and upbeat danceable songs brilliantly.”</p>
+            <p>“The horns definitely bring to mind The Specials... <span class="band-name">easydread</span> can do both slow, soulful songs and upbeat danceable songs brilliantly.”</p>
             <cite><a href="https://colinspunkrockworld.blogspot.com/2017/03/album-review-fyah-by-easydread.html">Colin's Punk Rock World</a></cite>
           </blockquote>
           <blockquote class="quote">
             <p>“A memorable, catchy chorus... the groove has your feet tapping before you've begun to notice.”</p>
             <cite><a href="https://yackmagazine.com/featured-artist-easydread/">Yack Magazine</a></cite>
           </blockquote>
-          <blockquote class="quote">
-            <p>“Get moving on the dance floor, get bouncing around &mdash; Easydread guarantee a good time.”</p>
-            <cite>BBC Introducing</cite>
-          </blockquote>
         </div>
 
-        <img class="photo portrait-two" src="../images/drummer-boy-shaun-esquires-by-neilmccarty.jpg" alt="easydread drummer Shaun performing live">
+        <video class="photo portrait-two portrait-video" controls preload="metadata" src="../video/bbc-introducing-quote.mp4" aria-label="BBC Introducing quote video"></video>
       </section>
 
       <section class="connections" aria-labelledby="online-heading">
@@ -502,11 +520,6 @@
       </section>
 
       <p class="booking"><strong>Bookings &amp; press:</strong> <a href="mailto:booking@easydread.com">booking@easydread.com</a> &nbsp;|&nbsp; <a href="https://www.easydread.com">www.easydread.com</a></p>
-
-      <figure class="wide-photo">
-        <img class="photo" src="../images/easy-horns-at-mk11-by-aperture-events-photography.jpg" alt="easydread horn section performing live">
-        <figcaption>Horn section live at MK11</figcaption>
-      </figure>
     </article>
   </main>
 
