@@ -172,6 +172,12 @@
       text-transform: none;
     }
 
+    .player {
+      display: block;
+      width: 100%;
+      margin-bottom: 28px;
+    }
+
     .download-options {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -220,8 +226,49 @@
     .track {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 14px;
       border-top: 1px solid var(--line);
+    }
+
+    .track.is-playing { background: #181818; }
+
+    .play-track {
+      display: grid;
+      flex: 0 0 32px;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      padding: 0;
+      border: 2px solid var(--green);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--green);
+      cursor: pointer;
+      font-size: 0;
+    }
+
+    .play-track::before {
+      width: 0;
+      height: 0;
+      margin-left: 3px;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 8px solid currentColor;
+      content: "";
+    }
+
+    .track.is-playing:not(.is-paused) .play-track::before {
+      width: 8px;
+      height: 12px;
+      margin-left: 0;
+      border: 0;
+      background: linear-gradient(90deg, currentColor 0 35%, transparent 35% 65%, currentColor 65%);
+    }
+
+    .play-track:hover,
+    .play-track:focus-visible {
+      background: var(--green);
+      color: #000;
     }
 
     .track-number {
@@ -302,23 +349,27 @@
     </section>
 
     <section class="download-panel" aria-labelledby="downloads-heading">
-      <h2 class="section-heading" id="downloads-heading">Downloads <small>320 kbps MP3 / 10 tracks</small></h2>
+      <h2 class="section-heading" id="downloads-heading">Play or Download <small>320 kbps MP3 / 10 tracks</small></h2>
+      <audio class="player" id="player" controls preload="metadata" aria-label="Sound of the Uprising player">
+        <p>Your browser cannot play audio. <a href="https://easydread.com/audio/sotu.zip" download>Download the album</a>.</p>
+      </audio>
+
       <div class="download-options">
         <a class="download-all" href="https://easydread.com/audio/sotu.zip" download>All (ZIP) <span class="arrow">↓</span></a>
         <a class="download-all" id="download-all-mp3" href="#tracks" download>All (MP3) <span class="arrow">↓</span></a>
       </div>
 
       <ol class="tracks" id="tracks">
-        <li class="track"><span class="track-number">01</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_01_the-dance-floor-is-lava.mp3" download><span class="track-name">The Dance Floor is Lava</span><span class="track-download">MP3 ↓</span></a></li>
-        <li class="track"><span class="track-number">02</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_02_bun-down-babylon.mp3" download><span class="track-name">Bun Down Babylon</span><span class="track-download">MP3 ↓</span></a></li>
-        <li class="track"><span class="track-number">03</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_03_let-love-in.mp3" download><span class="track-name">Let Love In</span><span class="track-download">MP3 ↓</span></a></li>
-        <li class="track"><span class="track-number">04</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_04_hook-line-and-sinker.mp3" download><span class="track-name">Hook, Line and Sinker</span><span class="track-download">MP3 ↓</span></a></li>
-        <li class="track"><span class="track-number">05</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_05_light-it-up.mp3" download><span class="track-name">Light It Up</span><span class="track-download">MP3 ↓</span></a></li>
-        <li class="track"><span class="track-number">06</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_06_gonna-get-more.mp3" download><span class="track-name">Gonna Get More</span><span class="track-download">MP3 ↓</span></a></li>
-        <li class="track"><span class="track-number">07</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_07_sound-of-the-uprising.mp3" download><span class="track-name">Sound of the Uprising</span><span class="track-download">MP3 ↓</span></a></li>
-        <li class="track"><span class="track-number">08</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_08_all-over-the-nation.mp3" download><span class="track-name">All Over the Nation</span><span class="track-download">MP3 ↓</span></a></li>
-        <li class="track"><span class="track-number">09</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_09_the-calling.mp3" download><span class="track-name">The Calling</span><span class="track-download">MP3 ↓</span></a></li>
-        <li class="track"><span class="track-number">10</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_10_war-on-for-your-mind.mp3" download><span class="track-name">War On for Your Mind</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track" data-title="The Dance Floor is Lava"><button class="play-track" type="button" aria-label="Play The Dance Floor is Lava"></button><span class="track-number">01</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_01_the-dance-floor-is-lava.mp3" download><span class="track-name">The Dance Floor is Lava</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track" data-title="Bun Down Babylon"><button class="play-track" type="button" aria-label="Play Bun Down Babylon"></button><span class="track-number">02</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_02_bun-down-babylon.mp3" download><span class="track-name">Bun Down Babylon</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track" data-title="Let Love In"><button class="play-track" type="button" aria-label="Play Let Love In"></button><span class="track-number">03</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_03_let-love-in.mp3" download><span class="track-name">Let Love In</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track" data-title="Hook, Line and Sinker"><button class="play-track" type="button" aria-label="Play Hook, Line and Sinker"></button><span class="track-number">04</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_04_hook-line-and-sinker.mp3" download><span class="track-name">Hook, Line and Sinker</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track" data-title="Light It Up"><button class="play-track" type="button" aria-label="Play Light It Up"></button><span class="track-number">05</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_05_light-it-up.mp3" download><span class="track-name">Light It Up</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track" data-title="Gonna Get More"><button class="play-track" type="button" aria-label="Play Gonna Get More"></button><span class="track-number">06</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_06_gonna-get-more.mp3" download><span class="track-name">Gonna Get More</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track" data-title="Sound of the Uprising"><button class="play-track" type="button" aria-label="Play Sound of the Uprising"></button><span class="track-number">07</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_07_sound-of-the-uprising.mp3" download><span class="track-name">Sound of the Uprising</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track" data-title="All Over the Nation"><button class="play-track" type="button" aria-label="Play All Over the Nation"></button><span class="track-number">08</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_08_all-over-the-nation.mp3" download><span class="track-name">All Over the Nation</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track" data-title="The Calling"><button class="play-track" type="button" aria-label="Play The Calling"></button><span class="track-number">09</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_09_the-calling.mp3" download><span class="track-name">The Calling</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track" data-title="War On for Your Mind"><button class="play-track" type="button" aria-label="Play War On for Your Mind"></button><span class="track-number">10</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_10_war-on-for-your-mind.mp3" download><span class="track-name">War On for Your Mind</span><span class="track-download">MP3 ↓</span></a></li>
       </ol>
     </section>
 
@@ -328,6 +379,58 @@
     </footer>
   </main>
   <script>
+    var player = document.getElementById("player");
+    var tracks = Array.from(document.querySelectorAll(".track"));
+
+    function setTrack(track, shouldPlay) {
+      player.src = track.querySelector(".track-link").href;
+      tracks.forEach(function (item) {
+        item.classList.toggle("is-playing", item === track);
+        item.classList.toggle("is-paused", item === track && !shouldPlay);
+        item.querySelector(".play-track").setAttribute("aria-label", (item === track && shouldPlay ? "Pause " : "Play ") + item.dataset.title);
+      });
+      if (shouldPlay) {
+        player.play();
+      }
+    }
+
+    tracks.forEach(function (track) {
+      track.querySelector(".play-track").addEventListener("click", function () {
+        if (track.classList.contains("is-playing") && !player.paused) {
+          player.pause();
+        } else {
+          setTrack(track, true);
+        }
+      });
+    });
+
+    player.addEventListener("pause", function () {
+      tracks.forEach(function (track) {
+        if (track.classList.contains("is-playing")) {
+          track.classList.add("is-paused");
+          track.querySelector(".play-track").setAttribute("aria-label", "Play " + track.dataset.title);
+        }
+      });
+    });
+
+    player.addEventListener("play", function () {
+      tracks.forEach(function (track) {
+        if (track.classList.contains("is-playing")) {
+          track.classList.remove("is-paused");
+          track.querySelector(".play-track").setAttribute("aria-label", "Pause " + track.dataset.title);
+        }
+      });
+    });
+
+    player.addEventListener("ended", function () {
+      var currentIndex = tracks.findIndex(function (track) { return track.classList.contains("is-playing"); });
+      if (currentIndex >= 0 && currentIndex < tracks.length - 1) {
+        setTrack(tracks[currentIndex + 1], true);
+      }
+    });
+
+    setTrack(tracks[0], false);
+
     document.getElementById("download-all-mp3").addEventListener("click", function (event) {
       event.preventDefault();
       var trackLinks = document.querySelectorAll(".track-link");
