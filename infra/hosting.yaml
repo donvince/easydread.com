@@ -69,13 +69,15 @@ Resources:
       Name: !Sub "${AWS::StackName}-directory-index"
       AutoPublish: true
       FunctionConfig:
-        Comment: Resolve directory URLs to index.html
+        Comment: Resolve directory URLs with or without a trailing slash
         Runtime: cloudfront-js-2.0
       FunctionCode: |
         function handler(event) {
           var request = event.request;
           if (request.uri.endsWith('/')) {
             request.uri += 'index.html';
+          } else if (!request.uri.substring(request.uri.lastIndexOf('/') + 1).includes('.')) {
+            request.uri += '/index.html';
           }
           return request;
         }
