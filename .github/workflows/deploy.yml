@@ -96,3 +96,15 @@ jobs:
           aws cloudfront create-invalidation \
             --distribution-id "${{ steps.hosting.outputs.distribution-id }}" \
             --paths "/*"
+
+      - name: Verify CloudFront origin
+        run: |
+          distribution_ip=$(getent ahostsv4 "${{ steps.hosting.outputs.distribution-domain-name }}" | cut -d ' ' -f 1 | sort -u | sed -n '1p')
+          curl --fail --silent --show-error \
+            --resolve "easydread.com:443:$distribution_ip" \
+            --output /dev/null \
+            https://easydread.com/
+          curl --fail --silent --show-error \
+            --resolve "easydread.com:443:$distribution_ip" \
+            --output /dev/null \
+            https://easydread.com/epk/
