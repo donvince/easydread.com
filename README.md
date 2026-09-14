@@ -25,6 +25,24 @@ creates the distribution. After verifying the uploaded site, manually run the **
 workflow to point the apex and `www` records at CloudFront. Disable GitHub Pages only after
 `https://easydread.com` and `https://www.easydread.com` have been verified after cutover.
 
+## Audio files
+
+Audio under `https://easydread.com/audio/` is served from a separate private media bucket.
+The site deployment never syncs or deletes objects in that bucket. Upload an MP3 with the
+local operator profile:
+
+```bash
+aws s3 cp "song-name.mp3" \
+  "s3://easydread-com-media-015311074066/audio/song-name.mp3" \
+  --content-type audio/mpeg \
+  --cache-control "public,max-age=31536000,immutable" \
+  --profile don-easydread
+```
+
+Use a new filename when replacing released audio because CloudFront caches these immutable
+URLs. Only the operator role can manage media objects; the site CI role can provision the
+bucket but cannot upload or delete audio.
+
 To perform the DNS cutover locally with the `don-easydread` AWS profile after hosting has
 been deployed and verified:
 

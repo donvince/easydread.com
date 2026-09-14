@@ -28,6 +28,8 @@ The site is uploaded to a private S3 bucket and served by CloudFront over HTTPS.
 `main` that affect `docs/`, `infra/`, or the workflow trigger hosting deployment. Route 53
 cutover is a separate manual workflow. GitHub Actions assumes the `easydread-ci` role through
 GitHub OIDC; its permissions are managed in the adjacent `don-personal-iam` repository.
+Audio under `/audio/` is served from a separate private bucket and is managed outside the site
+deployment so `aws s3 sync --delete` cannot remove it.
 
 ## FTP Access
 

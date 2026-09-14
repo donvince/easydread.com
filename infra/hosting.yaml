@@ -38,6 +38,22 @@ Resources:
       VersioningConfiguration:
         Status: Enabled
 
+  MediaBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "easydread-com-media-${AWS::AccountId}"
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
+
   SiteOriginAccessControl:
     Type: AWS::CloudFront::OriginAccessControl
     Properties:
@@ -91,9 +107,27 @@ Resources:
         Enabled: true
         HttpVersion: http2and3
         IPV6Enabled: true
+        CacheBehaviors:
+          - AllowedMethods:
+              - GET
+              - HEAD
+              - OPTIONS
+            CachedMethods:
+              - GET
+              - HEAD
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+            Compress: true
+            PathPattern: audio/*
+            TargetOriginId: media-bucket
+            ViewerProtocolPolicy: redirect-to-https
         Origins:
           - DomainName: !GetAtt SiteBucket.RegionalDomainName
             Id: site-bucket
+            OriginAccessControlId: !GetAtt SiteOriginAccessControl.Id
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+          - DomainName: !GetAtt MediaBucket.RegionalDomainName
+            Id: media-bucket
             OriginAccessControlId: !GetAtt SiteOriginAccessControl.Id
             S3OriginConfig:
               OriginAccessIdentity: ""
@@ -120,6 +154,23 @@ Resources:
               StringEquals:
                 AWS:SourceArn: !Sub "arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${SiteDistribution}"
 
+  MediaBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref MediaBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowCloudFrontRead
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub "${MediaBucket.Arn}/audio/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${SiteDistribution}"
+
 Outputs:
   BucketName:
     Description: S3 bucket receiving site deployments
@@ -130,3 +181,6 @@ Outputs:
   DistributionDomainName:
     Description: CloudFront target for Route 53 aliases
     Value: !GetAtt SiteDistribution.DomainName
+  MediaBucketName:
+    Description: S3 bucket for manually managed audio files
+    Value: !Ref MediaBucket
