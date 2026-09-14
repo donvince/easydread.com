@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Sound of the Uprising / downloads / easydread</title>
+  <link rel="icon" type="image/gif" href="../images/easypac.gif">
+  <link rel="preload" href="../fonts/caprasimo/Caprasimo-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/bebas-neue/BebasNeue-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <style>
+    @font-face {
+      font-family: "Caprasimo";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/caprasimo/Caprasimo-Regular-latin.woff2") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Bebas Neue";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("../fonts/bebas-neue/BebasNeue-Regular.ttf") format("truetype");
+    }
+
+    :root {
+      --ink: #fff;
+      --paper: #000;
+      --red: #db2d31;
+      --gold: #efb91f;
+      --green: #16834a;
+      --muted: #bdbdbd;
+      --line: #383838;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      background: #000;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.4;
+    }
+
+    body::before {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 8px;
+      content: "";
+      background: linear-gradient(90deg, var(--red) 0 33.333%, var(--gold) 33.333% 66.666%, var(--green) 66.666%);
+      z-index: 2;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(100% - 40px, 920px);
+      margin: 0 auto;
+      padding: 58px 0 70px;
+    }
+
+    .masthead {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 25px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .brand-logo {
+      display: block;
+      width: min(240px, 55vw);
+      height: auto;
+    }
+
+    .label {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      line-height: 1;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 42px;
+      align-items: center;
+      padding: 54px 0 42px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--gold);
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 580px;
+      margin: 0;
+      font-family: "Caprasimo", Georgia, serif;
+      font-size: clamp(42px, 8vw, 82px);
+      font-weight: 400;
+      line-height: .93;
+    }
+
+    .intro {
+      max-width: 520px;
+      margin: 24px 0 0;
+      color: #e3e3e3;
+      font-size: 17px;
+    }
+
+    .cover {
+      position: relative;
+      display: grid;
+      aspect-ratio: 1;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      box-shadow: 12px 12px 0 var(--red);
+      transform: rotate(2deg);
+    }
+
+    .cover img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .download-panel {
+      padding: 30px;
+      border: 2px solid var(--ink);
+      background: #111;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 0 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--ink);
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .section-heading small {
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .download-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .download-all {
+      display: flex;
+      min-height: 72px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 15px 18px;
+      border: 2px solid var(--green);
+      background: var(--green);
+      color: #fff;
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 25px;
+      letter-spacing: 1px;
+      line-height: 1;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background .15s, color .15s, transform .15s;
+    }
+
+    .download-all:nth-child(2) { border-color: var(--red); background: var(--red); }
+
+    .download-all:hover,
+    .download-all:focus-visible {
+      background: var(--ink);
+      color: #000;
+      transform: translateY(-3px);
+    }
+
+    .arrow { font-family: Arial, Helvetica, sans-serif; font-size: 28px; }
+
+    .tracks {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .track {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .track-number {
+      flex: 0 0 32px;
+      color: var(--gold);
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 24px;
+      text-align: right;
+    }
+
+    .track-link {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 15px 0;
+      color: #fff;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .track-link:hover .track-name,
+    .track-link:focus-visible .track-name { color: var(--gold); }
+
+    .track-name { transition: color .15s; }
+    .track-download { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 34px;
+      padding-top: 20px;
+      border-top: 2px solid var(--ink);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: #fff;
+      font-family: "Caprasimo", Georgia, serif;
+      font-weight: 400;
+    }
+
+    @media (max-width: 680px) {
+      .shell { width: min(100% - 28px, 920px); padding-top: 42px; }
+      .masthead { display: block; }
+      .label { margin-top: 18px; text-align: left; }
+      .hero { grid-template-columns: 1fr; gap: 35px; padding-top: 40px; }
+      .cover { width: min(220px, 62vw); margin-left: 10px; }
+      .download-panel { padding: 20px 15px; }
+      .download-options { grid-template-columns: 1fr; }
+      .section-heading { display: block; }
+      .section-heading small { display: block; margin-top: 8px; }
+      .track-download { display: none; }
+      footer { display: block; }
+      footer p { margin: 0 0 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell" aria-labelledby="page-title">
+    <header class="masthead">
+      <a href="/" aria-label="easydread home"><img class="brand-logo" src="../images/easydread-logo.png" alt="easydread"></a>
+      <p class="label">Private download / 2026</p>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Album</p>
+        <h1 id="page-title">Sound of the Uprising</h1>
+        <p class="intro">Download</p>
+      </div>
+      <div class="cover">
+        <img src="../images/sotu-cover.jpeg" aria-label="Sound of the Uprising album artwork" alt="Sound of the Uprising album artwork">
+      </div>
+    </section>
+
+    <section class="download-panel" aria-labelledby="downloads-heading">
+      <h2 class="section-heading" id="downloads-heading">Downloads <small>320 kbps MP3 / 10 tracks</small></h2>
+      <div class="download-options">
+        <a class="download-all" href="https://easydread.com/audio/sotu.zip" download>All (ZIP) <span class="arrow">↓</span></a>
+        <a class="download-all" id="download-all-mp3" href="#tracks" download>All (MP3) <span class="arrow">↓</span></a>
+      </div>
+
+      <ol class="tracks" id="tracks">
+        <li class="track"><span class="track-number">01</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_01_the-dance-floor-is-lava.mp3" download><span class="track-name">The Dance Floor is Lava</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track"><span class="track-number">02</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_02_bun-down-babylon.mp3" download><span class="track-name">Bun Down Babylon</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track"><span class="track-number">03</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_03_let-love-in.mp3" download><span class="track-name">Let Love In</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track"><span class="track-number">04</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_04_hook-line-and-sinker.mp3" download><span class="track-name">Hook, Line and Sinker</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track"><span class="track-number">05</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_05_light-it-up.mp3" download><span class="track-name">Light It Up</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track"><span class="track-number">06</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_06_gonna-get-more.mp3" download><span class="track-name">Gonna Get More</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track"><span class="track-number">07</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_07_sound-of-the-uprising.mp3" download><span class="track-name">Sound of the Uprising</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track"><span class="track-number">08</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_08_all-over-the-nation.mp3" download><span class="track-name">All Over the Nation</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track"><span class="track-number">09</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_09_the-calling.mp3" download><span class="track-name">The Calling</span><span class="track-download">MP3 ↓</span></a></li>
+        <li class="track"><span class="track-number">10</span><a class="track-link" href="https://easydread.com/audio/easydread_sound-of-the-uprising_10_war-on-for-your-mind.mp3" download><span class="track-name">War On for Your Mind</span><span class="track-download">MP3 ↓</span></a></li>
+      </ol>
+    </section>
+
+    <footer>
+      <p><strong>easydread</strong> / Sound of the Uprising</p>
+      <p>Keep it moving. Keep it together.</p>
+    </footer>
+  </main>
+  <script>
+    document.getElementById("download-all-mp3").addEventListener("click", function (event) {
+      event.preventDefault();
+      var trackLinks = document.querySelectorAll(".track-link");
+      trackLinks.forEach(function (trackLink, index) {
+        window.setTimeout(function () {
+          var download = document.createElement("a");
+          download.href = trackLink.href;
+          download.download = "";
+          document.body.appendChild(download);
+          download.click();
+          download.remove();
+        }, index * 250);
+      });
+    });
+  </script>
+</body>
+</html>
