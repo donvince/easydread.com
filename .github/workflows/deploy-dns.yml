@@ -34,6 +34,8 @@ jobs:
           echo "distribution-domain-name=$distribution_domain_name" >> "$GITHUB_OUTPUT"
 
       - name: Deploy DNS stack
+        id: deploy-dns
+        continue-on-error: true
         run: |
           aws cloudformation deploy \
             --template-file infra/dns.yaml \
@@ -41,3 +43,13 @@ jobs:
             --parameter-overrides \
               "DistributionDomainName=${{ steps.hosting.outputs.distribution-domain-name }}" \
             --region eu-west-1
+
+      - name: Report DNS failure
+        if: steps.deploy-dns.outcome == 'failure'
+        run: |
+          aws cloudformation describe-stack-events \
+            --stack-name easydread-dns \
+            --region eu-west-1 \
+            --query "StackEvents[?ResourceStatusReason != null].[Timestamp,LogicalResourceId,ResourceStatus,ResourceStatusReason]" \
+            --output table
+          exit 1
