@@ -30,11 +30,23 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy hosting stack
+        id: deploy-hosting
+        continue-on-error: true
         run: |
           aws cloudformation deploy \
             --template-file infra/hosting.yaml \
             --stack-name easydread-hosting \
             --region us-east-1
+
+      - name: Report hosting failure
+        if: steps.deploy-hosting.outcome == 'failure'
+        run: |
+          aws cloudformation describe-stack-events \
+            --stack-name easydread-hosting \
+            --region us-east-1 \
+            --query "StackEvents[?ResourceStatusReason != null].[Timestamp,LogicalResourceId,ResourceStatus,ResourceStatusReason]" \
+            --output table
+          exit 1
 
       - name: Read hosting outputs
         id: hosting
