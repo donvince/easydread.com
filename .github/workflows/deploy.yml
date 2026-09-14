@@ -29,6 +29,22 @@ jobs:
           role-session-name: easydread-deploy
           aws-region: us-east-1
 
+      - name: Remove failed hosting stack
+        run: |
+          status=$(aws cloudformation describe-stacks \
+            --stack-name easydread-hosting \
+            --region us-east-1 \
+            --query 'Stacks[0].StackStatus' \
+            --output text 2>/dev/null || true)
+          if [[ "$status" == "ROLLBACK_COMPLETE" ]]; then
+            aws cloudformation delete-stack \
+              --stack-name easydread-hosting \
+              --region us-east-1
+            aws cloudformation wait stack-delete-complete \
+              --stack-name easydread-hosting \
+              --region us-east-1
+          fi
+
       - name: Deploy hosting stack
         id: deploy-hosting
         continue-on-error: true
