@@ -8,6 +8,9 @@ Parameters:
   HostedZoneId:
     Type: String
     Default: Z05099481R278MSYRMTGJ
+  DistributionDomainName:
+    Type: String
+    Description: Domain name of the CloudFront distribution
 
 Resources:
 
@@ -17,22 +20,34 @@ Resources:
       HostedZoneId: !Ref HostedZoneId
       RecordSets:
 
-        # Apex A records — GitHub Pages
+        # Website — CloudFront
         - Name: easydread.com.
           Type: A
-          TTL: 300
-          ResourceRecords:
-            - 185.199.108.153
-            - 185.199.109.153
-            - 185.199.110.153
-            - 185.199.111.153
+          AliasTarget:
+            DNSName: !Ref DistributionDomainName
+            EvaluateTargetHealth: false
+            HostedZoneId: Z2FDTNDATAQYW2
 
-        # www — GitHub Pages
+        - Name: easydread.com.
+          Type: AAAA
+          AliasTarget:
+            DNSName: !Ref DistributionDomainName
+            EvaluateTargetHealth: false
+            HostedZoneId: Z2FDTNDATAQYW2
+
         - Name: www.easydread.com.
-          Type: CNAME
-          TTL: 300
-          ResourceRecords:
-            - donvince.github.io.
+          Type: A
+          AliasTarget:
+            DNSName: !Ref DistributionDomainName
+            EvaluateTargetHealth: false
+            HostedZoneId: Z2FDTNDATAQYW2
+
+        - Name: www.easydread.com.
+          Type: AAAA
+          AliasTarget:
+            DNSName: !Ref DistributionDomainName
+            EvaluateTargetHealth: false
+            HostedZoneId: Z2FDTNDATAQYW2
 
         # FTP — pinned directly to original server IP so it remains
         # unaffected when the apex A record changes

@@ -1,5 +1,8 @@
 # GitHub Pages Migration Plan
 
+> Historical document. GitHub Pages was replaced by private S3 storage behind CloudFront;
+> see `README.md` and `infra/hosting.yaml` for the current deployment.
+
 ## Goal
 
 Move easydread.com from FTP-hosted static site to GitHub Pages to gain HTTPS.

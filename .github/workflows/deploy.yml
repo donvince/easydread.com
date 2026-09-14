@@ -1,0 +1,70 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/**
+      - infra/**
+      - .github/workflows/deploy.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - uses: aws-actions/configure-aws-credentials@v6.1.3
+        with:
+          role-to-assume: arn:aws:iam::015311074066:role/projects/easydread/easydread-ci
+          role-session-name: easydread-deploy
+          aws-region: us-east-1
+
+      - name: Deploy hosting stack
+        run: |
+          aws cloudformation deploy \
+            --template-file infra/hosting.yaml \
+            --stack-name easydread-hosting \
+            --region us-east-1
+
+      - name: Read hosting outputs
+        id: hosting
+        run: |
+          bucket_name=$(aws cloudformation describe-stacks \
+            --stack-name easydread-hosting \
+            --region us-east-1 \
+            --query "Stacks[0].Outputs[?OutputKey=='BucketName'].OutputValue" \
+            --output text)
+          distribution_id=$(aws cloudformation describe-stacks \
+            --stack-name easydread-hosting \
+            --region us-east-1 \
+            --query "Stacks[0].Outputs[?OutputKey=='DistributionId'].OutputValue" \
+            --output text)
+          distribution_domain_name=$(aws cloudformation describe-stacks \
+            --stack-name easydread-hosting \
+            --region us-east-1 \
+            --query "Stacks[0].Outputs[?OutputKey=='DistributionDomainName'].OutputValue" \
+            --output text)
+          {
+            echo "bucket-name=$bucket_name"
+            echo "distribution-id=$distribution_id"
+            echo "distribution-domain-name=$distribution_domain_name"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Upload site
+        run: aws s3 sync docs/ "s3://${{ steps.hosting.outputs.bucket-name }}/" --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ steps.hosting.outputs.distribution-id }}" \
+            --paths "/*"

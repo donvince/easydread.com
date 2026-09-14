@@ -5,18 +5,29 @@ Website for easydread, a seven-piece Conscious-Rock-Reggae band from Bedfordshir
 ## Project Structure
 
 ```
-docs/               # Static website files (served by GitHub Pages)
+docs/               # Static website files (deployed to S3 and served by CloudFront)
   index.html        # Main page - gigs listing with Bandsintown widget
   videos.html       # Videos page - embedded YouTube videos
   images/           # Band photos, logos, social icons
   style/            # CSS (easydread.css, normalize.css)
   video/            # Video files (.mov) - large files
-  CNAME             # Custom domain for GitHub Pages
-  .nojekyll         # Disables Jekyll processing on GitHub Pages
+infra/
+  hosting.yaml      # S3, ACM, and CloudFront resources (us-east-1)
+  dns.yaml          # Route 53 records (eu-west-1)
+.github/workflows/
+  deploy.yml        # Provisions hosting and deploys docs/ on main
+  deploy-dns.yml    # Manual Route 53 cutover to CloudFront
 scripts/
   ftp-download.sh   # Downloads site from FTP using 1Password credentials (legacy)
   ftp-upload.sh     # Uploads changed files to FTP (legacy, pre-GH Pages)
 ```
+
+## Hosting
+
+The site is uploaded to a private S3 bucket and served by CloudFront over HTTPS. Pushes to
+`main` that affect `docs/`, `infra/`, or the workflow trigger hosting deployment. Route 53
+cutover is a separate manual workflow. GitHub Actions assumes the `easydread-ci` role through
+GitHub OIDC; its permissions are managed in the adjacent `don-personal-iam` repository.
 
 ## FTP Access
 
