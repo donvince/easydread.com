@@ -184,6 +184,12 @@
       object-position: 54% 44%;
     }
 
+    .portrait-photo {
+      position: relative;
+      min-height: 103mm;
+      margin: 0;
+    }
+
     .members-block {
       margin-top: 5mm;
     }
@@ -224,7 +230,7 @@
       object-position: 50% 58%;
     }
 
-    .wide-photo figcaption {
+    .photo-caption {
       position: absolute;
       right: 2mm;
       bottom: 1.5mm;
@@ -461,12 +467,15 @@
 
           <div class="release">
             <h2 class="section-title">Latest Release</h2>
-            <p>Album <span class="release-name">Sound of the Uprising</span> is <span class="band-name">easydread</span>'s latest burst of reggae warmth, ska-bright brass, and punk-charged energy, capturing the feelgood chaos of a band built for festival stages.</p>
+            <p>Album <span class="release-name">Sound of the Uprising</span> is <span class="band-name">easydread</span>'s latest burst of reggae warmth, ska-bright brass, and punk-charged energy, capturing the feelgood chaos of a band built for festival stages. <a href="../sotu/">listen and download here</a></p>
             <p>The record blends bouncing horn lines, dub-soaked textures and sing-ready hooks into a soundtrack for anyone who's ever found joy in a crowd.</p>
           </div>
         </div>
 
-        <img class="photo portrait-one" src="../images/epk-band-square.jpeg" alt="easydread band portrait">
+        <figure class="portrait-photo">
+          <img class="photo portrait-one" src="../images/epk-band-square.jpeg" alt="easydread band portrait">
+          <figcaption class="photo-caption"><span class="band-name">easydread</span> live</figcaption>
+        </figure>
       </section>
 
       <section class="members-block" aria-labelledby="members-heading">
@@ -485,7 +494,7 @@
 
       <figure class="wide-photo">
         <img class="photo" src="../images/epk-band-landscape.jpeg" alt="easydread live on stage">
-        <figcaption><span class="band-name">easydread</span> live</figcaption>
+        <figcaption class="photo-caption"><span class="band-name">easydread</span></figcaption>
       </figure>
     </article>
 
