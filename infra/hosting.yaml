@@ -77,7 +77,24 @@ Resources:
           if (request.uri.endsWith('/')) {
             request.uri += 'index.html';
           } else if (!request.uri.substring(request.uri.lastIndexOf('/') + 1).includes('.')) {
-            request.uri += '/index.html';
+            var query = [];
+            for (var name in request.querystring) {
+              var parameter = request.querystring[name];
+              var values = parameter.multiValue || [parameter];
+              for (var i = 0; i < values.length; i++) {
+                query.push(encodeURIComponent(name) + '=' + encodeURIComponent(values[i].value));
+              }
+            }
+
+            var location = request.uri + '/';
+            if (query.length > 0) location += '?' + query.join('&');
+            return {
+              statusCode: 308,
+              statusDescription: 'Permanent Redirect',
+              headers: {
+                location: { value: location },
+              },
+            };
           }
           return request;
         }
