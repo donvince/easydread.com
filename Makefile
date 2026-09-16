@@ -17,7 +17,7 @@ pdf:
 	$(DOCKER) build \
 		--build-arg "CHROMIUM_IMAGE_VERSION=$(CHROMIUM_IMAGE_VERSION)" \
 		--tag "$(PDF_IMAGE)" \
-		--file Dockerfile.pdf .
+		--file pdf.Dockerfile .
 	$(DOCKER) run --rm --init --ipc=host \
 		--user "$$(id -u):$$(id -g)" \
 		--env HOME=/tmp \
