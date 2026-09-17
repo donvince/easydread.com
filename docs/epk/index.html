@@ -113,6 +113,35 @@
       text-transform: uppercase;
     }
 
+    .pdf-link {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 4.8mm;
+      letter-spacing: .18mm;
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .pdf-link .pdf-red { color: var(--red); }
+    .pdf-link .pdf-yellow { color: var(--gold); }
+    .pdf-link .pdf-green { color: var(--green); }
+
+    .pdf-link .pdf-brand {
+      display: block;
+      font-family: "Caprasimo", Georgia, serif;
+      font-size: 1.1em;
+      letter-spacing: 0;
+      line-height: .85;
+      text-align: center;
+      text-transform: none;
+    }
+
+    .web-link { display: none; }
+
     .tagline {
       margin: 4.2mm 0;
       padding-bottom: 4mm;
@@ -414,6 +443,22 @@
         box-shadow: none;
       }
 
+      .pdf-link { display: none; }
+
+      .web-link {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        color: var(--ink);
+        font-family: "Bebas Neue", Impact, sans-serif;
+        font-size: 4.8mm;
+        letter-spacing: .18mm;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
       .page + .page {
         break-before: page;
         page-break-before: always;
@@ -446,6 +491,12 @@
         letter-spacing: 1.5px;
         text-align: center;
       }
+
+      .pdf-link {
+        top: 12px;
+        right: 22px;
+        font-size: 18px;
+      }
     }
   </style>
 </head>
@@ -455,6 +506,8 @@
       <header class="masthead">
         <h1 class="brand" id="page-title"><a href="/"><img class="brand-logo" src="../images/easydread-logo.png" alt="easydread"></a></h1>
         <p class="document-label">Electronic Press Kit / 2026</p>
+        <a class="pdf-link" href="https://easydread.com/epk/easydread-epk.pdf">View As <span class="pdf-brand"><span class="pdf-red">P</span><span class="pdf-yellow">D</span><span class="pdf-green">F</span></span></a>
+        <a class="web-link" href="https://easydread.com/epk/">View on Web</a>
       </header>
 
       <p class="tagline">Reggae, ska &amp; punk fusion bringing big brass, big bounce and high-energy festival vibes from Bedfordshire, UK.</p>
