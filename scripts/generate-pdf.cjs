@@ -75,12 +75,19 @@ async function findChromiumExecutable() {
     throw new Error(`No Chromium installation found under ${browserRoot}`);
   }
 
-  return join(
-    browserRoot,
-    chromiumDirectory.name,
-    "chrome-linux",
-    "chrome",
+  // Playwright's Chromium build directory is named "chrome-linux" on arm64
+  // and "chrome-linux64" on amd64.
+  const chromiumPath = join(browserRoot, chromiumDirectory.name);
+  const buildDirectories = await readdir(chromiumPath, { withFileTypes: true });
+  const buildDirectory = buildDirectories.find(
+    (entry) => entry.isDirectory() && entry.name.startsWith("chrome-linux"),
   );
+
+  if (!buildDirectory) {
+    throw new Error(`No chrome-linux* directory found under ${chromiumPath}`);
+  }
+
+  return join(chromiumPath, buildDirectory.name, "chrome");
 }
 
 async function launchChromium(chromiumExecutable, profileDirectory) {
