@@ -23,6 +23,9 @@ jobs:
     steps:
       - uses: actions/checkout@v6.0.2
 
+      - name: Generate EPK PDF
+        run: make pdf-site
+
       - uses: aws-actions/configure-aws-credentials@v6.1.3
         with:
           role-to-assume: arn:aws:iam::015311074066:role/projects/easydread/easydread-ci
