@@ -6,6 +6,7 @@ on:
     paths:
       - docs/**
       - infra/**
+      - scripts/generate-pdf.cjs
       - .github/workflows/deploy.yml
   workflow_dispatch:
 

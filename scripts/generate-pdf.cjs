@@ -11,6 +11,7 @@ const outputPath = resolve(
   process.env.PDF_OUTPUT || "output/pdf/easydread-epk.pdf",
 );
 const pagePath = process.env.PDF_PAGE || "/epk/";
+const publicSiteOrigin = "https://easydread.com";
 const chromiumShutdownTimeoutMs = 5_000;
 
 const contentTypes = {
@@ -229,7 +230,15 @@ async function printToPdf(connection, url) {
     "Runtime.evaluate",
     {
       awaitPromise: true,
-      expression: "document.fonts.ready.then(() => true)",
+      expression: `document.fonts.ready.then(() => {
+        for (const link of document.querySelectorAll("a[href]")) {
+          const target = new URL(link.href);
+          if (target.origin === window.location.origin) {
+            link.href = ${JSON.stringify(publicSiteOrigin)} + target.pathname + target.search + target.hash;
+          }
+        }
+        return true;
+      })`,
       returnByValue: true,
     },
     sessionId,
